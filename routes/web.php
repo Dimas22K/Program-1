@@ -7,7 +7,7 @@
         use App\Http\Controllers\KemampuanLabController;
 
         Route::get('/', function () {
-            return view('welcome');
+            return view('login');
         });
 
         // Login
@@ -18,7 +18,11 @@
         Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
         // Admin dashboard
-        Route::get('/admin', [AuthController::class, 'dashboard'])->name('admin');
+        Route::get('/admin', [AuthController::class, 'adminDashboard'])->name('admin');
+
+        Route::get('/welcome', function () {
+            return view('welcome');
+        })->name('welcome');
 
         // Dinamis: /data-mesin/kania atau /alat-ukur/kaprang, dll
         Route::get('/{jenis}/{divisi}', [DivisiController::class, 'show'])

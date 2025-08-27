@@ -58,7 +58,7 @@
         </div>
 
         <!-- Kolom Kanan -->
-        <div class="flex-1 hidden lg:flex bg-center bg-cover" style="background-image: url('/images/kanan.jpg');">
+        <div class="flex-1 hidden lg:flex bg-center bg-cover" style="background-image: url('/images/kanan.png');">
         </div>
 
     </div>

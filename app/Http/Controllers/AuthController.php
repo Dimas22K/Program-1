@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
     // Tampilkan halaman login
     public function showLogin()
     {
-        return view('login');
+        return view('login'); // pastikan file ada di resources/views/auth/login.blade.php
     }
 
     // Proses login
@@ -22,14 +23,22 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // Cari user dengan username & password langsung (plaintext)
-        $user = User::where('username', $request->username)
-                    ->where('password', $request->password)
-                    ->first();
+        // Cari user berdasarkan username
+        $user = User::where('username', $request->username)->first();
 
-        if ($user) {
-            Session::put('user', $user->id);
-            return redirect('/admin')->with('success', 'Login berhasil!');
+        // Cek password pakai hash
+        if ($user && Hash::check($request->password, $user->password)) {
+            // Simpan ke session
+            Session::put('user_id', $user->id);
+            Session::put('username', $user->username);
+            Session::put('role', $user->role);
+
+            // Redirect sesuai role
+            if ($user->role === 'admin') {
+                return redirect()->route('admin')->with('success', 'Login berhasil sebagai Admin!');
+            } else {
+                return redirect()->route('welcome')->with('success', 'Login berhasil sebagai User!');
+            }
         }
 
         return back()->withErrors([
@@ -37,20 +46,43 @@ class AuthController extends Controller
         ])->withInput();
     }
 
-    // Halaman dashboard admin
-    public function dashboard()
+    // Dashboard Admin
+    public function adminDashboard(Request $request)
     {
-        if (!Session::has('user')) {
-            return redirect('/login');
+        if (!Session::has('user_id') || Session::get('role') !== 'admin') {
+            return redirect('/login')->with('error', 'Silakan login kembali!');
         }
 
-        return view('admin'); // pastikan ada file resources/views/admin.blade.php
+        // Set header no-cache agar tidak bisa kembali setelah logout
+        $this->noCache($request);
+
+        return view('admin');
+    }
+
+    // Dashboard User
+    public function userDashboard(Request $request)
+    {
+        if (!Session::has('user_id') || Session::get('role') !== 'user') {
+            return redirect('/login')->with('error', 'Silakan login kembali!');
+        }
+
+        $this->noCache($request);
+
+        return view('welcome');
     }
 
     // Logout
     public function logout()
     {
-        Session::forget('user');
+        Session::flush(); 
         return redirect('/login')->with('success', 'Berhasil logout');
+    }
+
+    // Fungsi untuk set no-cache
+    private function noCache(Request $request)
+    {
+        $request->headers->set('Cache-Control','no-cache, no-store, must-revalidate');
+        $request->headers->set('Pragma','no-cache');
+        $request->headers->set('Expires','0');
     }
 }
