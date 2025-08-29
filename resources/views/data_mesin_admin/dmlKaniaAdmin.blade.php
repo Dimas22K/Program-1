@@ -84,7 +84,7 @@
                 </thead>
                 {{-- PERUBAHAN: Ukuran font di body tabel dikecilkan menjadi text-sm --}}
                 <tbody class="text-gray-700 text-sm">
-                    @foreach($data as $row)
+                    @forelse($data as $row)
                         @php
                             $rowClass = match($row->status) {
                                 'DONE'     => 'bg-green-50 hover:bg-green-100',
@@ -137,7 +137,14 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        {{-- Baris ini akan muncul HANYA JIKA $data kosong --}}
+                        <tr>
+                            <td colspan="9" class="text-center py-6 px-4 text-gray-500 font-medium">
+                                Data tidak ditemukan.
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

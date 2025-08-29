@@ -90,7 +90,7 @@
                     </tr>
                 </thead>
                 <tbody class="text-gray-700">
-                    @foreach($data as $row)
+                    @forelse($data as $row)
                         {{-- Logika untuk menentukan warna baris dan badge status --}}
                         @php
                             $rowClass = match($row->status) {
@@ -144,7 +144,14 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        {{-- Baris ini akan muncul HANYA JIKA $data kosong --}}
+                        <tr>
+                            <td colspan="9" class="text-center py-6 px-4 text-gray-500 font-medium">
+                                Data tidak ditemukan.
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

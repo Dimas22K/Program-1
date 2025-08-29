@@ -83,7 +83,7 @@
 
                 {{-- Body Tabel dengan Pewarnaan Dinamis --}}
                 <tbody class="text-gray-700">
-                    @foreach($data as $row)
+                    @forelse($data as $row)
                         @php
                             $rowClass = match($row->status) {
                                 'DONE'     => 'bg-green-50 hover:bg-green-100 transition-colors duration-200',
@@ -119,7 +119,14 @@
                                 </span>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        {{-- Baris ini akan muncul HANYA JIKA $data kosong --}}
+                        <tr>
+                            <td colspan="9" class="text-center py-6 px-4 text-gray-500 font-medium">
+                                Data tidak ditemukan.
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

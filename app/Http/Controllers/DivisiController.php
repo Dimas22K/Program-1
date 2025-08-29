@@ -28,7 +28,7 @@ class DivisiController extends Controller
 
         // Tentukan prefix tabel & nama tabel
         $prefix = $jenis === 'data-mesin' ? 'dml' : 'dau';
-        $table  = "{$prefix}_{$divisi}";    // contoh: dml_kania, dau_harkan, dst.
+        $table  = "{$prefix}_{$divisi}";    
 
         // Ambil data dari tabel sesuai
         $query = DB::table($table);
