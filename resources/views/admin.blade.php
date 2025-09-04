@@ -37,6 +37,7 @@
           <!-- Dropdown animasi -->
           <div id="mobile-menu"
             class="absolute left-1/2 -translate-x-1/2 mt-2 w-40 bg-[#0085FF] text- rounded-lg shadow-lg overflow-hidden transform scale-y-0 origin-top transition-transform duration-300 z-50">
+            <a href="{{ route('kemampuanLabAdmin') }}" class="block px-5 py-2 hover:bg-[#0063c0] text-center">Kemampuan Lab Kalibrasi</a>
             <a href="{{ route('login') }}" class="block px-5 py-2 hover:bg-[#0063c0] text-center">Logout</a>
             
           </div>
@@ -161,7 +162,6 @@
     // Fungsi pilih divisi
     function goToDivisi(divisi) {
       const jenis = document.getElementById('modal').getAttribute('data-jenis');
-      // Contoh redirect ke URL Laravel sesuai pilihan
       window.location.href = `/admin/${jenis}/${divisi}`;
     }
   </script>

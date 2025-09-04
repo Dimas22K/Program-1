@@ -31,14 +31,14 @@
                        placeholder="Kodefikasi / Nama / Merk">
             </div>
             <div>
-                <label for="tgl_mulai" class="block text-sm font-medium text-gray-700">Tgl Kalibrasi (Mulai)</label>
+                <label for="tgl_mulai" class="block text-sm font-medium text-gray-700">Tanggal Kalibrasi</label>
                 <input type="date" name="tgl_mulai" id="tgl_mulai" value="{{ request('tgl_mulai') }}"
                        class="mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 w-44">
             </div>
             <div>
-                <label for="status" class="block text-sm font-medium text-gray-700">Filter Status</label>
+                <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                 <select name="status" id="status" class="mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 w-40">
-                    <option value="">-- Semua --</option>
+                    <option value="">All</option>
                     <option value="DONE"     {{ request('status') == 'DONE'     ? 'selected' : '' }}>DONE</option>
                     <option value="RUSAK"    {{ request('status') == 'RUSAK'    ? 'selected' : '' }}>RUSAK</option>
                     <option value="PROGRESS" {{ request('status') == 'PROGRESS' ? 'selected' : '' }}>PROGRESS</option>
@@ -72,7 +72,6 @@
             <table class="w-full border-collapse">
                 <thead class="bg-slate-800 text-white">
                     <tr>
-                        {{-- PERUBAHAN: Padding diubah dari px-5 menjadi px-3 dan semua whitespace-nowrap dihapus --}}
                         <th class="px-3 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">No</th>
                         <th class="px-3 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Kodefikasi</th>
                         <th class="px-3 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Nama Alat</th>
@@ -143,7 +142,7 @@
                     @empty
                         {{-- Baris ini akan muncul HANYA JIKA $data kosong --}}
                         <tr>
-                            <td colspan="9" class="text-center py-6 px-4 text-gray-500 font-medium">
+                            <td colspan="10" class="text-center py-6 px-4 text-gray-500 font-medium">
                                 Data tidak ditemukan.
                             </td>
                         </tr>

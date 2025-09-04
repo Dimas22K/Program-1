@@ -20,35 +20,42 @@
 
         <h1 class="text-3xl font-bold mb-6 text-slate-800">Data Alat Ukur Harkan (Admin)</h1>
 
-        {{-- Filter Form --}}
-        <form method="GET" action="{{ url()->current() }}" class="mb-6 flex flex-wrap items-center gap-4 bg-white p-4 rounded-lg shadow-sm">
-            <div>
-                <label for="search" class="block text-sm font-medium text-gray-700">Search</label>
-                <input type="text" name="search" id="search" value="{{ request('search') }}"
-                       class="mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 w-60"
-                       placeholder="Kodefikasi / Nama / Merk">
-            </div>
-            <div>
-                <label for="tgl_mulai" class="block text-sm font-medium text-gray-700">Tgl Kalibrasi (Mulai)</label>
-                <input type="date" name="tgl_mulai" id="tgl_mulai" value="{{ request('tgl_mulai') }}"
-                       class="mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 w-44">
-            </div>
-            <div>
-                <label for="status" class="block text-sm font-medium text-gray-700">Filter Status</label>
-                <select name="status" id="status" class="mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 w-40">
-                    <option value="">-- Semua --</option>
-                    <option value="DONE"     {{ request('status') == 'DONE'     ? 'selected' : '' }}>DONE</option>
-                    <option value="RUSAK"    {{ request('status') == 'RUSAK'    ? 'selected' : '' }}>RUSAK</option>
-                    <option value="PROGRESS" {{ request('status') == 'PROGRESS' ? 'selected' : '' }}>PROGRESS</option>
-                    <option value="RE CAL"   {{ request('status') == 'RE CAL'   ? 'selected' : '' }}>RE CAL</option>
-                    <option value="OOT"      {{ request('status') == 'OOT'      ? 'selected' : '' }}>OOT</option>
-                </select>
-            </div>
+                {{-- Form Filter --}}
+            <form method="GET" action="{{ url()->current() }}" class="mb-6 flex flex-wrap items-center gap-4 bg-white p-4 rounded-lg shadow-sm">
+                {{-- Search Gabungan --}}
+                <div>
+                    <label for="search" class="block text-sm font-medium text-gray-700">Search</label>
+                    <input type="text" name="search" id="search" value="{{ request('search') }}"
+                        class="mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-60"
+                        placeholder="Kodefikasi / Nama / Merk">
+                </div>
+
+                {{-- Filter Tanggal Kalibrasi --}}
+                <div>
+                    <label for="tgl_mulai" class="block text-sm font-medium text-gray-700">Tgl Kalibrasi (Mulai)</label>
+                    <input type="date" name="tgl_mulai" id="tgl_mulai" value="{{ request('tgl_mulai') }}"
+                        class="mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-44">
+                </div>
+
+                {{-- Filter Status --}}
+                <div>
+                    <label for="status" class="block text-sm font-medium text-gray-700">Filter Status</label>
+                    <select name="status" id="status" class="mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-40">
+                        <option value="">-- Semua --</option>
+                        <option value="DONE"     {{ request('status') == 'DONE'     ? 'selected' : '' }}>DONE</option>
+                        <option value="RUSAK"    {{ request('status') == 'RUSAK'    ? 'selected' : '' }}>RUSAK</option>
+                        <option value="PROGRESS" {{ request('status') == 'PROGRESS' ? 'selected' : '' }}>PROGRESS</option>
+                        <option value="RE CAL"   {{ request('status') == 'RE CAL'   ? 'selected' : '' }}>RE CAL</option>
+                        <option value="OOT"      {{ request('status') == 'OOT'      ? 'selected' : '' }}>OOT</option>
+                    </select>
+                </div>
+
+            {{-- Tombol --}}
             <div class="pt-5">
-                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2 rounded-md shadow-sm transition-colors">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2 rounded-md shadow-sm transition-colors duration-200">
                     Filter
                 </button>
-                <a href="{{ url()->current() }}" class="bg-gray-500 hover:bg-gray-600 text-white font-bold px-5 py-2 rounded-md shadow-sm transition-colors">
+                <a href="{{ url()->current() }}" class="bg-gray-500 hover:bg-gray-600 text-white font-bold px-5 py-2 rounded-md shadow-sm transition-colors duration-200">
                     Reset
                 </a>
             </div>
@@ -141,7 +148,7 @@
                     @empty
                         {{-- Baris ini akan muncul HANYA JIKA $data kosong --}}
                         <tr>
-                            <td colspan="9" class="text-center py-6 px-4 text-gray-500 font-medium">
+                            <td colspan="10" class="text-center py-6 px-4 text-gray-500 font-medium">
                                 Data tidak ditemukan.
                             </td>
                         </tr>

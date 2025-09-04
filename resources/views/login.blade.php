@@ -25,6 +25,7 @@
                 Masuk
             </h1>
 
+        
             <!-- Form -->
             <form action="{{ url('/login') }}" method="POST" class="w-full max-w-xs">
                 @csrf

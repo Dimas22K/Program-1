@@ -126,13 +126,6 @@
                                 Data tidak ditemukan.
                             </td>
                         </tr>
-                    @empty
-                        {{-- Baris ini akan muncul HANYA JIKA $data kosong --}}
-                        <tr>
-                            <td colspan="9" class="text-center py-6 px-4 text-gray-500 font-medium">
-                                Data tidak ditemukan.
-                            </td>
-                        </tr>
                     @endforelse
                 </tbody>
             </table>
@@ -142,8 +135,6 @@
         <div class="mt-6">
             {{ $data->links() }}
         </div>
-
-    </div> {{-- Akhir dari Kontainer Utama --}}
-
+    </div> 
 </body>
 </html>

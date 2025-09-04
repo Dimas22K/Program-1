@@ -18,6 +18,9 @@
         Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
         // Admin dashboard
+        /*Route::get('/admin', function () {
+            return view('admin');
+        })->name('admin');*/
         Route::get('/admin', [AuthController::class, 'adminDashboard'])->name('admin');
 
         Route::get('/welcome', function () {
@@ -52,5 +55,5 @@
         Route::delete('/{jenis}/{divisi}/{id}', [AdminController::class, 'destroy'])->name('admin.delete');
     });
 
-    Route::get('/kemampuanLab', [KemampuanLabController::class, 'index']
-    )->name('kemampuanLab');
+    Route::get('/kemampuanLab', [KemampuanLabController::class, 'index'])->name('kemampuanLab');
+    Route::get('/kemampuanLabAdmin', [KemampuanLabController::class, 'indexAdmin'])->name('kemampuanLabAdmin');
