@@ -47,7 +47,7 @@ class AuthController extends Controller
         return view('admin'); // pastikan ada file resources/views/admin.blade.php
     }
 
-    // Logout
+    // Logout                                               
     public function logout()
     {
         Session::forget('user');

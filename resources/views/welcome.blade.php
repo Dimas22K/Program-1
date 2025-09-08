@@ -21,7 +21,7 @@
 
       <!-- Logo -->
       <div class="flex items-center space-x-2">
-        <img src="/images/logo.png" alt="Logo" class="h-10 md:h-16 w-auto mr-4">
+        <img src="/images/pal.png" alt="Logo" class="h-10 md:h-16 w-auto mr-4">
       </div>
 
       <!-- Menu + Hamburger -->
@@ -35,12 +35,12 @@
           </button>
 
           <!-- Dropdown animasi -->
-    <div id="mobile-menu"
-        class="absolute left-1/2 -translate-x-1/2 mt-2 w-40 bg-[#0085FF] text- rounded-lg shadow-lg overflow-hidden transform scale-y-0 origin-top transition-transform duration-300 z-50">
-        <a href="{{ route('login') }}" class    ="block px-5 py-2 hover:bg-[#0063c0] text-center">Masuk</a>
-        <a href="{{ route('kemampuanLab') }}" class="block px-5 py-2 hover:bg-[#0063c0] text-center">Kemampuan Lab Kalibrasi</a>
-    </div>
-
+          <div id="mobile-menu"
+            class="absolute left-1/2 -translate-x-1/2 mt-2 w-40 bg-[#0085FF] text- rounded-lg shadow-lg overflow-hidden transform scale-y-0 origin-top transition-transform duration-300 z-50">
+            <a href="{{ route('kemampuanLab') }}" class="block px-5 py-2 hover:bg-[#0063c0] text-center">Kemampuan Lab Kalibrasi</a>
+            <a href="{{ route('login') }}" class="block px-5 py-2 hover:bg-[#0063c0] text-center">Logout</a>
+            
+          </div>
 
         </div>
       </div>
@@ -59,72 +59,77 @@
   <section class="py-12 bg-white">
     <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20 text-center">
 
-      <!-- Data Mesin -->
-      <div class="cursor-pointer" onclick="openModal('Data Mesin')">
-        <img src="/images/datamesin.jpg" alt="Data Mesin" class="w-full rounded-lg object-cover h-[550px]">
-        <p class="mt-3 text-lg font-bold">Data Mesin</p>
-      </div>
+      <!-- Data 
+       -->
+<!-- Data Mesin -->
+<div class="cursor-pointer" onclick="openModal('data-mesin')">
+  <img src="/images/mesinlas.png" 
+       alt="Mesin Las" 
+       class="w-full rounded-lg object-cover h-[700px] transition-transform duration-300 hover:scale-105">
+</div>
 
-      <!-- Alat Ukur -->
-      <div class="cursor-pointer" onclick="openModal('Alat Ukur')">
-        <img src="/images/alatukur.jpg" alt="Alat Ukur" class="w-full rounded-lg object-cover h-[550px]">
-        <p class="mt-3 text-lg font-bold">Alat Ukur</p>
-      </div>
-
+<!-- Alat Ukur -->
+<div class="cursor-pointer" onclick="openModal('alat-ukur')">
+  <img src="/images/alatukur.png" 
+       alt="Alat Ukur" 
+       class="w-full rounded-lg object-cover h-[700px] transition-transform duration-300 hover:scale-105">
+</div>
     </div>
   </section>
 
-  <!-- Modal Pilih Divisi -->
-  <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div class="bg-white rounded-lg shadow-lg p-6 max-w-5xl w-full relative">
-      <button onclick="closeModal()" class="absolute top-3 right-4 text-xl font-bold">&times;</button>
-      <h2 class="text-center text-xl font-bold mb-6">Pilih Divisi</h2>
+<div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white rounded-lg shadow-lg p-8 max-w-7xl w-[90%] relative">
+    <button onclick="closeModal()" class="absolute top-3 right-4 text-2xl font-bold hover:text-red-500 transition">&times;</button>
+    <h2 class="text-center text-2xl font-bold mb-8">Pilih Divisi</h2>
 
-      <!-- Flex container -->
-      <div class="flex flex-wrap justify-center gap-4">
-        <!-- Baris 1 -->
-        <div onclick="goToDivisi('kania')" class="relative cursor-pointer w-60 h-32">
-          <img src="/images/divisikania.png" class="w-full h-full object-cover rounded-lg">
-          <p class="absolute inset-0 flex items-center justify-center text-white font-bold bg-black bg-opacity-30">Divisi Kania</p>
-        </div>
-        <div onclick="goToDivisi('kapsel')" class="relative cursor-pointer w-60 h-32">
-          <img src="/images/divisikapsel.png" class="w-full h-full object-cover rounded-lg">
-          <p class="absolute inset-0 flex items-center justify-center text-white font-bold bg-black bg-opacity-30">Divisi Kapsel</p>
-        </div>
-        <div onclick="goToDivisi('kaprang')" class="relative cursor-pointer w-60 h-32">
-          <img src="/images/divisikaprang.png" class="w-full h-full object-cover rounded-lg">
-          <p class="absolute inset-0 flex items-center justify-center text-white font-bold bg-black bg-opacity-30">Divisi Kaprang</p>
-        </div>
+    <!-- Flex container -->
+    <div class="flex flex-wrap justify-center gap-8">
+      <!-- Baris 1 -->
+      <div onclick="goToDivisi('kania')" class="relative cursor-pointer w-72 h-44 hover:scale-105 transition-transform duration-200">
+        <img src="/images/divisikania.png" class="w-full h-full object-cover rounded-lg">
+        <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-30">Divisi Kania</p>
+      </div>
 
-        <!-- Baris 2 -->
-        <div onclick="goToDivisi('harkan')" class="relative cursor-pointer w-60 h-32">
-          <img src="/images/divisiharkan.png" class="w-full h-full object-cover rounded-lg">
-          <p class="absolute inset-0 flex items-center justify-center text-white font-bold bg-black bg-opacity-30">Divisi Harkan</p>
-        </div>
-        <div onclick="goToDivisi('rekum')" class="relative cursor-pointer w-60 h-32">
-          <img src="/images/divisirekum.png" class="w-full h-full object-cover rounded-lg">
-          <p class="absolute inset-0 flex items-center justify-center text-white font-bold bg-black bg-opacity-30">Divisi Rekum</p>
-        </div>
+      <div onclick="goToDivisi('kapsel')" class="relative cursor-pointer w-72 h-44 hover:scale-105 transition-transform duration-200">
+        <img src="/images/divisikapsel.png" class="w-full h-full object-cover rounded-lg">
+        <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-30">Divisi Kapsel</p>
+      </div>
+
+      <div onclick="goToDivisi('kaprang')" class="relative cursor-pointer w-72 h-44 hover:scale-105 transition-transform duration-200">
+        <img src="/images/divisikaprang.png" class="w-full h-full object-cover rounded-lg">
+        <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-30">Divisi Kaprang</p>
+      </div>
+
+      <!-- Baris 2 -->
+      <div onclick="goToDivisi('harkan')" class="relative cursor-pointer w-72 h-44 hover:scale-105 transition-transform duration-200">
+        <img src="/images/divisiharkan.png" class="w-full h-full object-cover rounded-lg">
+        <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-30">Divisi Harkan</p>
+      </div>
+
+      <div onclick="goToDivisi('rekum')" class="relative cursor-pointer w-72 h-44 hover:scale-105 transition-transform duration-200">
+        <img src="/images/divisirekum.png" class="w-full h-full object-cover rounded-lg">
+        <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-30">Divisi Rekum</p>
       </div>
     </div>
   </div>
+</div>
 
 
   <footer class="bg-[#2ba7cf] text-white py-6 mt-12">
-  <div class="container mx-auto px-6 text-center text-sm">
+    <div class="container mx-auto px-6 text-center text-sm">
 
-    <div class="inline-flex items-center justify-center gap-x-16 mb-4">
-      <img src="/images/pal.png" class="h-8 md:h-12 lg:h-14 object-contain" alt="PAL">
-      <img src="/images/kan.png" class="h-8 md:h-12 lg:h-20 object-contain" alt="KAN">
-      <img src="/images/iso.png" class="h-8 md:h-12 lg:h-24 object-contain" alt="ISO">
+      <div class="inline-flex items-center justify-center gap-x-16 mb-4">
+        <img src="/images/pal.png" class="h-8 md:h-12 lg:h-14 object-contain" alt="PAL">
+        <img src="/images/kan.png" class="h-8 md:h-12 lg:h-20 object-contain" alt="KAN">
+        <img src="/images/iso.png" class="h-8 md:h-12 lg:h-24 object-contain" alt="ISO">
+      </div>
+
+      <div>
+        Laboratorium Kalibrasi PT. PAL Indonesia (Persero). Copyright 2021.
+      </div>
+
     </div>
-
-    <div>
-      Laboratorium Kalibrasi PT. PAL Indonesia (Persero). Copyright 2021.
-    </div>
-
-  </div>
-</footer>
+  </footer>
 
   <script>
     const menuBtn = document.getElementById('mobile-menu-button');
