@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use App\Models\IntervalKalibrasi;
+
 
 class AdminController extends Controller
 {
@@ -124,27 +127,55 @@ class AdminController extends Controller
         abort(404, 'Halaman tidak ditemukan');
     }
 
-    public function store(Request $request, $jenis, $divisi)
-    {
-        $table = $this->getTableName($jenis, $divisi);
-        
-        // Validasi sederhana
-        $request->validate([
-            'kodefikasi' => 'required',
-            'nama_alat' => 'required',
-            'merk_type' => 'required',
-            'no_seri' => 'required',
-            'range_alat' => 'required',
-            'tgl_kalibrasi' => 'required|date',
-            'kalibrasi_selanjutnya' => 'required|date',
-            'status' => 'required'
-        ]);
-        
-        DB::table($table)->insert($request->except('_token'));
-        
-        return redirect()->route('admin.divisi', [$jenis, $divisi])
-            ->with('success', 'Data berhasil ditambahkan');
+public function store(Request $request, $jenis, $divisi)
+{
+    $table = $this->getTableName($jenis, $divisi);
+
+    // Validasi input (tanpa kalibrasi_selanjutnya & status karena otomatis)
+    $request->validate([
+        'kodefikasi' => 'required',
+        'nama_alat' => 'required',
+        'merk_type' => 'required',
+        'no_seri' => 'required',
+        'range_alat' => 'required',
+        'tgl_kalibrasi' => 'required|date',
+    ]);
+
+    // Ambil interval dari tabel referensi
+    $interval = IntervalKalibrasi::where('nama_alat', $request->nama_alat)
+        ->value('interval_bulan') ?? 6;
+
+    // Hitung kalibrasi selanjutnya
+    $tglKalibrasi = $request->tgl_kalibrasi ? Carbon::parse($request->tgl_kalibrasi) : null;
+    $kalibrasiSelanjutnya = $tglKalibrasi ? $tglKalibrasi->copy()->addMonths($interval) : null;
+
+    // ✅ Tentukan status otomatis (per tanggal, bukan jam)
+    // - null/ kosong  -> RUSAK
+    // - < hari ini    -> RE CAL (sudah lewat)
+    // - >= hari ini   -> DONE   (masih/tepat hari ini)
+    if (!$kalibrasiSelanjutnya) {
+        $status = 'RUSAK';
+    } elseif ($kalibrasiSelanjutnya->lt(Carbon::today())) {
+        $status = 'RE CAL';
+    } else {
+        $status = 'DONE';
     }
+    // Simpan ke database
+    DB::table($table)->insert([
+    'kodefikasi'              => $request->kodefikasi,
+    'nama_alat'               => $request->nama_alat,
+    'merk_type'               => $request->merk_type,
+    'no_seri'                 => $request->no_seri,
+    'range_alat'              => $request->range_alat,
+    'tgl_kalibrasi'           => $request->tgl_kalibrasi,
+    'kalibrasi_selanjutnya'   => $kalibrasiSelanjutnya ? $kalibrasiSelanjutnya->toDateString() : null,
+    'status'                  => $status,
+    ]);
+
+
+    return redirect()->route('admin.divisi', [$jenis, $divisi])
+        ->with('success', 'Data berhasil ditambahkan');
+}
 
     public function edit($jenis, $divisi, $id)
     {
@@ -165,27 +196,56 @@ class AdminController extends Controller
         abort(404, 'Halaman tidak ditemukan');
     }
 
-    public function update(Request $request, $jenis, $divisi, $id)
-    {
-        $table = $this->getTableName($jenis, $divisi);
-        
-        // Validasi sederhana
-        $request->validate([
-            'kodefikasi' => 'required',
-            'nama_alat' => 'required',
-            'merk_type' => 'required',
-            'no_seri' => 'required',
-            'range_alat' => 'required',
-            'tgl_kalibrasi' => 'required|date',
-            'kalibrasi_selanjutnya' => 'required|date',
-            'status' => 'required'
-        ]);
-        
-        DB::table($table)->where('id', $id)->update($request->except('_token', '_method'));
-        
-        return redirect()->route('admin.divisi', [$jenis, $divisi])
-            ->with('success', 'Data berhasil diupdate');
+public function update(Request $request, $jenis, $divisi, $id)
+{
+    $table = $this->getTableName($jenis, $divisi);
+
+    // Validasi input (tanpa kalibrasi_selanjutnya & status karena otomatis)
+    $request->validate([
+        'kodefikasi' => 'required',
+        'nama_alat' => 'required',
+        'merk_type' => 'required',
+        'no_seri' => 'nullable',
+        'range_alat' => 'nullable',
+        'tgl_kalibrasi' => 'required|date',
+    ]);
+
+    // Ambil interval dari tabel referensi
+    $interval = IntervalKalibrasi::where('nama_alat', $request->nama_alat)
+        ->value('interval_bulan') ?? 6;
+
+    // Hitung kalibrasi selanjutnya
+    $tglKalibrasi = $request->tgl_kalibrasi ? Carbon::parse($request->tgl_kalibrasi) : null;
+    $kalibrasiSelanjutnya = $tglKalibrasi ? $tglKalibrasi->copy()->addMonths($interval) : null;
+
+    // ✅ Tentukan status otomatis (per tanggal, bukan jam)
+    if (!$kalibrasiSelanjutnya) {
+        $status = 'RUSAK';
+    } elseif ($kalibrasiSelanjutnya->lt(Carbon::today())) {
+        $status = 'RE CAL';
+    } else {
+        $status = 'DONE';
     }
+
+
+    // Update ke database
+    DB::table($table)->where('id', $id)->update([
+    'kodefikasi'              => $request->kodefikasi,
+    'nama_alat'               => $request->nama_alat,
+    'merk_type'               => $request->merk_type,
+    'no_seri'                 => $request->no_seri,
+    'range_alat'              => $request->range_alat,
+    'tgl_kalibrasi'           => $request->tgl_kalibrasi,
+    'kalibrasi_selanjutnya'   => $kalibrasiSelanjutnya ? $kalibrasiSelanjutnya->toDateString() : null,
+    'status'                  => $status,
+]);
+
+
+    return redirect()->route('admin.divisi', [$jenis, $divisi])
+        ->with('success', 'Data berhasil diupdate');
+}
+
+
 
     public function destroy($jenis, $divisi, $id)
     {
@@ -226,4 +286,50 @@ class AdminController extends Controller
 
         return $map[$jenis][$divisi] ?? abort(404, 'Tabel tidak ditemukan');
     }
+
+        // =========================
+    // 📊 DATA UNTUK CHART
+    // =========================
+public function getChartData()
+{
+    $divisi = ['rekum', 'kaprang', 'kapsel', 'harkan', 'kania'];
+
+    $dataAlat = [];
+    $dataMesin = [];
+
+    foreach ($divisi as $d) {
+        // Hitung alat ukur
+        $totalAlat = DB::table("dau_$d")->count();
+        $doneAlat = DB::table("dau_$d")->where('status', 'DONE')->count();
+        $recalAlat = DB::table("dau_$d")->where('status', 'RE CAL')->count();
+        $rusakAlat = DB::table("dau_$d")->where('status', 'RUSAK')->count();
+
+        // Hitung mesin las
+        $totalMesin = DB::table("dml_$d")->count();
+        $doneMesin = DB::table("dml_$d")->where('status', 'DONE')->count();
+        $recalMesin = DB::table("dml_$d")->where('status', 'RE CAL')->count();
+        $rusakMesin = DB::table("dml_$d")->where('status', 'RUSAK')->count();
+
+        $dataAlat[] = [
+            'divisi' => ucfirst($d),
+            'total' => $totalAlat,
+            'done' => $doneAlat,
+            'recal' => $recalAlat,
+            'rusak' => $rusakAlat
+        ];
+
+        $dataMesin[] = [
+            'divisi' => ucfirst($d),
+            'total' => $totalMesin,
+            'done' => $doneMesin,
+            'recal' => $recalMesin,
+            'rusak' => $rusakMesin
+        ];
+    }
+
+    return response()->json([
+        'alat' => $dataAlat,
+        'mesin' => $dataMesin
+    ]);
+}
 }

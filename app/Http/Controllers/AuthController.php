@@ -35,9 +35,9 @@ class AuthController extends Controller
 
             // Redirect sesuai role
             if ($user->role === 'admin') {
-                return redirect()->route('admin')->with('success', 'Login berhasil sebagai Admin!');
+                return redirect()->route('chart.admin')->with('success', 'Login berhasil sebagai Admin!');
             } else {
-                return redirect()->route('welcome')->with('success', 'Login berhasil sebagai User!');
+                return redirect()->route('chart.user')->with('success', 'Login berhasil sebagai User!');
             }
         }
 
@@ -69,6 +69,30 @@ class AuthController extends Controller
         $this->noCache($request);
 
         return view('welcome');
+    }
+
+    // 🔹 Chart untuk User
+    public function chartUser(Request $request)
+    {
+        if (!Session::has('user_id') || Session::get('role') !== 'user') {
+            return redirect('/login')->with('error', 'Silakan login kembali!');
+        }
+
+        $this->noCache($request);
+
+        return view('chartuser');
+    }
+
+    // 🔹 Chart untuk Admin
+    public function chartAdmin(Request $request)
+    {
+        if (!Session::has('user_id') || Session::get('role') !== 'admin') {
+            return redirect('/login')->with('error', 'Silakan login kembali!');
+        }
+
+        $this->noCache($request);
+
+        return view('chartadmin');
     }
 
     // Logout

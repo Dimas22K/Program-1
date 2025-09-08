@@ -14,6 +14,17 @@
         Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
         Route::post('/login', [AuthController::class, 'login']);
 
+        // Chart User
+        Route::get('/chart-user', [AuthController::class, 'chartUser'])->name('chart.user');
+
+        // Chart Admin
+        Route::get('/chart-admin', [AuthController::class, 'chartAdmin'])->name('chart.admin');
+
+
+        // Chart Data (JSON untuk grafik admin)
+        Route::get('/chart-data', [AdminController::class, 'getChartData'])->name('chart.data');
+
+
         // Logout
         Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 

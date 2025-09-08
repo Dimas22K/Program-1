@@ -59,22 +59,6 @@
                         <label for="tgl_kalibrasi" class="block text-sm font-medium text-slate-700">Tanggal Kalibrasi</label>
                         <input type="date" id="tgl_kalibrasi" name="tgl_kalibrasi" value="{{ $row->tgl_kalibrasi }}" class="w-full mt-2 bg-white/70 border-2 border-cyan-200 rounded-lg py-2 px-3 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition duration-300 hover:border-teal-400">
                     </div>
-                    <div>
-                        <label for="kalibrasi_selanjutnya" class="block text-sm font-medium text-slate-700">Kalibrasi Selanjutnya</label>
-                        <input type="date" id="kalibrasi_selanjutnya" name="kalibrasi_selanjutnya" value="{{ $row->kalibrasi_selanjutnya }}" class="w-full mt-2 bg-white/70 border-2 border-cyan-200 rounded-lg py-2 px-3 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition duration-300 hover:border-teal-400">
-                    </div>
-                </div>
-
-                <div>
-                    <label for="status" class="block text-sm font-medium text-slate-700">Status</label>
-                    <select id="status" name="status" class="w-full mt-2 bg-white/70 border-2 border-cyan-200 rounded-lg py-2 px-3 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition duration-300 hover:border-teal-400" required>
-                        <option value="">-- Pilih Status --</option>
-                        <option value="DONE" {{ $row->status=='DONE'?'selected':'' }}>DONE</option>
-                        <option value="OOT" {{ $row->status=='OOT'?'selected':'' }}>OOT</option>
-                        <option value="PROGRESS" {{ $row->status=='PROGRESS'?'selected':'' }}>PROGRESS</option>
-                        <option value="RE CAL" {{ $row->status=='RE CAL'?'selected':'' }}>RE CAL</option>
-                        <option value="RUSAK" {{ $row->status=='RUSAK'?'selected':'' }}>RUSAK</option>
-                    </select>
                 </div>
 
                 <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-lg font-semibold text-white bg-orange-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white/80 focus:ring-orange-500 transition-all duration-300 ease-in-out hover:bg-orange-600 hover:-translate-y-1 hover:shadow-orange-500/40">
