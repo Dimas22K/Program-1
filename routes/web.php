@@ -7,18 +7,36 @@
         use App\Http\Controllers\KemampuanLabController;
 
         Route::get('/', function () {
-            return view('welcome');
+            return view('login');
         });
                                                                                                     
         // Login
         Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
         Route::post('/login', [AuthController::class, 'login']);
 
+        // Chart User
+        Route::get('/chart-user', [AuthController::class, 'chartUser'])->name('chart.user');
+
+        // Chart Admin
+        Route::get('/chart-admin', [AuthController::class, 'chartAdmin'])->name('chart.admin');
+
+
+        // Chart Data (JSON untuk grafik admin)
+        Route::get('/chart-data', [AdminController::class, 'getChartData'])->name('chart.data');
+
+
         // Logout
         Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
         // Admin dashboard
-        Route::get('/admin', [AuthController::class, 'dashboard'])->name('admin');
+        /*Route::get('/admin', function () {
+            return view('admin');
+        })->name('admin');*/
+        Route::get('/admin', [AuthController::class, 'adminDashboard'])->name('admin');
+
+        Route::get('/welcome', function () {
+            return view('welcome');
+        })->name('welcome');
 
         // Dinamis: /data-mesin/kania atau /alat-ukur/kaprang, dll
         Route::get('/{jenis}/{divisi}', [DivisiController::class, 'show'])
@@ -48,5 +66,5 @@
         Route::delete('/{jenis}/{divisi}/{id}', [AdminController::class, 'destroy'])->name('admin.delete');
     });
 
-    Route::get('/kemampuanLab', [KemampuanLabController::class, 'index']
-    )->name('kemampuanLab');
+    Route::get('/kemampuanLab', [KemampuanLabController::class, 'index'])->name('kemampuanLab');
+    Route::get('/kemampuanLabAdmin', [KemampuanLabController::class, 'indexAdmin'])->name('kemampuanLabAdmin');

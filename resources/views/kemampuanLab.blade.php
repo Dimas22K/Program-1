@@ -7,6 +7,14 @@
 <body class="bg-gray-100 font-sans">
     
     <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+
+        <a href="{{ url('/welcome') }}" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors mb-4 group">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            <span>Kembali</span>
+        </a>
+
         {{-- Diubah: Judul diberi warna tema (indigo) --}}
         <h1 class="text-3xl font-bold mb-6 text-indigo-800">Daftar Kemampuan Lab</h1>
 

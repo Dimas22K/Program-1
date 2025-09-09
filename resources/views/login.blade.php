@@ -25,6 +25,7 @@
                 Masuk
             </h1>
 
+        
             <!-- Form -->
             <form action="{{ url('/login') }}" method="POST" class="w-full max-w-xs">
                 @csrf
@@ -58,7 +59,7 @@
         </div>
 
         <!-- Kolom Kanan -->
-        <div class="flex-1 hidden lg:flex bg-center bg-cover" style="background-image: url('/images/kanan.jpg');">
+        <div class="flex-1 hidden lg:flex bg-center bg-cover" style="background-image: url('/images/kanan.png');">
         </div>
 
     </div>

@@ -1,67 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tambah Data Measin Las</title>
+    <title>Tambah Mesin Las</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 p-6">
-    <div class="max-w-lg mx-auto bg-white shadow-md rounded-lg p-6">
-        <h2 class="text-2xl font-bold mb-4">Tambah Data Mesin las</h2>
+<body class="bg-gradient-to-br from-cyan-200 via-teal-200 to-blue-300">
+    <div class="min-h-screen flex items-center justify-center py-12 px-4">
 
-        <form action="{{ route('admin.store', [$jenis, $divisi]) }}" method="POST">
-            @csrf
-            <div class="mb-4">
-                <label class="block font-semibold">Kodefikasi</label>
-                <input type="text" name="kodefikasi" class="w-full border p-2 rounded" required>
+        <div class="w-full max-w-lg mx-auto bg-white/80 backdrop-blur-sm shadow-2xl rounded-2xl p-8">
+            
+            <div class="mb-6">
+                <a href="{{ url()->previous() }}" class="inline-flex items-center gap-2 rounded-lg px-3 py-1 font-semibold text-teal-700 hover:bg-teal-100 hover:text-teal-900 hover:-translate-x-1 transition-all duration-300 ease-in-out">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                    </svg>
+                    Kembali
+                </a>
             </div>
 
-            <div class="mb-4">
-                <label class="block font-semibold">Nama Alat</label>
-                <input type="text" name="nama_alat" class="w-full border p-2 rounded" required>
-            </div>
+            <h2 class="text-3xl font-bold mb-8 text-center text-teal-800">
+                Tambah Data Mesin Las
+            </h2>
 
-            <div class="mb-4">
-                <label class="block font-semibold">Merk / Type</label>
-                <input type="text" name="merk_type" class="w-full border p-2 rounded">
-            </div>
+            <form action="{{ route('admin.store', [$jenis, $divisi]) }}" method="POST" class="space-y-5">
+                @csrf
 
-            <div class="mb-4">
-                <label class="block font-semibold">No Seri</label>
-                <input type="text" name="no_seri" class="w-full border p-2 rounded">
-            </div>
+                <div>
+                    <label for="kodefikasi" class="block text-sm font-medium text-slate-700">Kodefikasi</label>
+                    <input type="text" id="kodefikasi" name="kodefikasi" class="w-full mt-2 bg-white/70 border-2 border-cyan-200 rounded-lg py-2 px-3 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition duration-300 hover:border-teal-400" required>
+                </div>
 
-            <div class="mb-4">
-                <label class="block font-semibold">Range Alat</label>
-                <input type="text" name="range_alat" class="w-full border p-2 rounded">
-            </div>
+                <div>
+                    <label for="nama_alat" class="block text-sm font-medium text-slate-700">Nama Alat</label>
+                    <input type="text" id="nama_alat" name="nama_alat" class="w-full mt-2 bg-white/70 border-2 border-cyan-200 rounded-lg py-2 px-3 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition duration-300 hover:border-teal-400" required>
+                </div>
 
-            <div class="mb-4">
-                <label class="block font-semibold">Tanggal Kalibrasi</label>
-                <input type="date" name="tgl_kalibrasi" class="w-full border p-2 rounded">
-            </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="merk_type" class="block text-sm font-medium text-slate-700">Merk / Type</label>
+                        <input type="text" id="merk_type" name="merk_type" class="w-full mt-2 bg-white/70 border-2 border-cyan-200 rounded-lg py-2 px-3 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition duration-300 hover:border-teal-400">
+                    </div>
+                    <div>
+                        <label for="no_seri" class="block text-sm font-medium text-slate-700">No Seri</label>
+                        <input type="text" id="no_seri" name="no_seri" class="w-full mt-2 bg-white/70 border-2 border-cyan-200 rounded-lg py-2 px-3 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition duration-300 hover:border-teal-400">
+                    </div>
+                </div>
 
-            <div class="mb-4">
-                <label class="block font-semibold">Kalibrasi Selanjutnya</label>
-                <input type="date" name="kalibrasi_selanjutnya" class="w-full border p-2 rounded">
-            </div>
+                <div>
+                    <label for="range_alat" class="block text-sm font-medium text-slate-700">Range Alat</label>
+                    <input type="text" id="range_alat" name="range_alat" class="w-full mt-2 bg-white/70 border-2 border-cyan-200 rounded-lg py-2 px-3 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition duration-300 hover:border-teal-400">
+                </div>
 
-            <div class="mb-4">
-                <label class="block font-semibold">Status</label>
-                <select name="status" class="w-full border p-2 rounded" required>
-                    <option value="">-- Pilih Status --</option>
-                    <option value="DONE">DONE</option>
-                    <option value="Luar">Luar</option>
-                    <option value="OOT">OOT</option>
-                    <option value="PROGRESS">Progress</option>
-                    <option value="RE CAL">Recall</option>
-                    <option value="RUSAK">Rusak</option>
-                </select>
-            </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="tgl_kalibrasi" class="block text-sm font-medium text-slate-700">Tanggal Kalibrasi</label>
+                        <input type="date" id="tgl_kalibrasi" name="tgl_kalibrasi" class="w-full mt-2 bg-white/70 border-2 border-cyan-200 rounded-lg py-2 px-3 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition duration-300 hover:border-teal-400">
+                    </div>
+                </div>
 
-            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
-                Simpan
-            </button>
-        </form>
+                <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-lg font-semibold text-white bg-orange-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white/80 focus:ring-orange-500 transition-all duration-300 ease-in-out hover:bg-orange-600 hover:-translate-y-1 hover:shadow-orange-500/40">
+                    Simpan Data
+                </button>
+            </form>
+        </div>
     </div>
 </body>
 </html>
