@@ -53,7 +53,7 @@
                     <span>Logout</span>
                 </a>
             </div>
-        </aside>
+        </aside>    
 
         <main class="flex-1 p-6 lg:p-8 overflow-y-auto">
             <h1 class="text-3xl font-bold text-slate-800">Dashboard Ringkasan Kalibrasi</h1>

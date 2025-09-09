@@ -9,10 +9,10 @@
         Route::get('/', function () {
             return view('login');
         });
-
+                                                                                                    
         // Login
-        Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-        Route::post('/login', [AuthController::class, 'login']);
+        Route::get('/login', [AuthController::class, 'showLogin'])->name('login');  
+        Route::post('/login', [AuthController::class, 'login']);                                                                                                        
 
         // Chart User
         Route::get('/chart-user', [AuthController::class, 'chartUser'])->name('chart.user');

@@ -95,7 +95,7 @@ class AuthController extends Controller
         return view('chartadmin');
     }
 
-    // Logout
+    // Logout                                               
     public function logout()
     {
         Session::flush(); 
