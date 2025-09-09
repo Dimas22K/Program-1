@@ -155,7 +155,7 @@
 
         {{-- Pagination --}}
         <div class="mt-6">
-            {{ $data->links() }}
+            {{ $data->withQueryString()->links() }}
         </div>
 
     </div>
