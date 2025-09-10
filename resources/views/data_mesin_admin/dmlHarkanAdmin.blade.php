@@ -23,7 +23,7 @@
 
         <h1 class="text-3xl font-bold mb-6 text-slate-800">Data Mesin Las Harkan (Admin)</h1>
 
-        {{-- Filter Form dengan Gaya Baru --}}
+{{-- Filter Form --}}
         <form method="GET" action="{{ url()->current() }}" class="mb-6 flex flex-wrap items-center gap-4 bg-white p-4 rounded-lg shadow-sm">
             <div>
                 <label for="search" class="block text-sm font-medium text-gray-700">Search</label>
@@ -31,17 +31,15 @@
                        class="mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 w-60"
                        placeholder="Kodefikasi / Nama / Merk">
             </div>
-
             <div>
-                <label for="tgl_mulai" class="block text-sm font-medium text-gray-700">Tgl Kalibrasi (Mulai)</label>
+                <label for="tgl_mulai" class="block text-sm font-medium text-gray-700">Tanggal Kalibrasi</label>
                 <input type="date" name="tgl_mulai" id="tgl_mulai" value="{{ request('tgl_mulai') }}"
                        class="mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 w-44">
             </div>
-
             <div>
-                <label for="status" class="block text-sm font-medium text-gray-700">Filter Status</label>
+                <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                 <select name="status" id="status" class="mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 w-40">
-                    <option value="">-- Semua --</option>
+                    <option value="">All</option>
                     <option value="DONE"     {{ request('status') == 'DONE'     ? 'selected' : '' }}>DONE</option>
                     <option value="RUSAK"    {{ request('status') == 'RUSAK'    ? 'selected' : '' }}>RUSAK</option>
                     <option value="PROGRESS" {{ request('status') == 'PROGRESS' ? 'selected' : '' }}>PROGRESS</option>
@@ -49,7 +47,6 @@
                     <option value="OOT"      {{ request('status') == 'OOT'      ? 'selected' : '' }}>OOT</option>
                 </select>
             </div>
-
             <div class="pt-5">
                 <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2 rounded-md shadow-sm transition-colors">
                     Filter
@@ -60,7 +57,7 @@
             </div>
         </form>
 
-        {{-- Tombol Tambah Data dengan Gaya Baru --}}
+        {{-- Tombol Tambah Data --}}
         <div class="mb-4">
             <a href="{{ route('admin.create', [$jenis, $divisi]) }}"
                class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg shadow-md transition-transform transform hover:scale-105">
@@ -71,27 +68,27 @@
             </a>
         </div>
 
-        {{-- Tabel Data dengan Desain Baru --}}
-        <div class="bg-white shadow-xl rounded-lg overflow-x-auto">
-            <table class="min-w-full border-collapse">
+        {{-- Tabel Data. Dihapus overflow-x-auto agar tidak bisa scroll --}}
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+            <table class="w-full border-collapse">
                 <thead class="bg-slate-800 text-white">
                     <tr>
-                        <th class="px-5 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">No</th>
-                        <th class="px-5 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Kodefikasi</th>
-                        <th class="px-5 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Nama Alat</th>
-                        <th class="px-5 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Merk / Type</th>
-                        <th class="px-5 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">No. Seri</th>
-                        <th class="px-5 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Range</th>
-                        <th class="px-5 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider w-48">Tgl Kalibrasi</th>
-                        <th class="px-5 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider w-48">Kalibrasi Berikutnya</th>
-                        {{-- Ditambahkan whitespace-nowrap agar teks tidak turun --}}
-                        <th class="px-5 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider whitespace-nowrap">Status</th>
-                        <th class="px-5 py-3 border-b-2 border-slate-700 text-center text-xs font-semibold uppercase tracking-wider">Aksi</th>
+                        <th class="px-3 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">No</th>
+                        <th class="px-3 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Kodefikasi</th>
+                        <th class="px-3 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Nama Alat</th>
+                        <th class="px-3 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Merk / Type</th>
+                        <th class="px-3 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">No. Seri</th>
+                        <th class="px-8 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Range</th>
+                        <th class="px-3 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Tgl Kalibrasi</th>
+                        <th class="px-2 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Kalibrasi Berikutnya</th>
+                        <th class="px-3 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Calibration Plan</th>
+                        <th class="px-8 py-3 border-b-2 border-slate-700 text-center text-xs font-semibold uppercase tracking-wider">Status</th>
+                        <th class="px-3 py-3 border-b-2 border-slate-700 text-center text-xs font-semibold uppercase tracking-wider">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="text-gray-700">
+                {{-- PERUBAHAN: Ukuran font di body tabel dikecilkan menjadi text-sm --}}
+                <tbody class="text-gray-700 text-sm">
                     @forelse($data as $row)
-                        {{-- Logika untuk menentukan warna baris dan badge status --}}
                         @php
                             $rowClass = match($row->status) {
                                 'DONE'     => 'bg-green-50 hover:bg-green-100',
@@ -113,21 +110,35 @@
                         @endphp
 
                         <tr class="{{ $rowClass }} transition-colors duration-200">
-                            <td class="px-5 py-4 border-b border-gray-200">{{ $row->id }}</td>
-                            <td class="px-5 py-4 border-b border-gray-200">{{ $row->kodefikasi }}</td>
-                            <td class="px-5 py-4 border-b border-gray-200">{{ $row->nama_alat }}</td>
-                            <td class="px-5 py-4 border-b border-gray-200">{{ $row->merk_type }}</td>
-                            <td class="px-5 py-4 border-b border-gray-200">{{ $row->no_seri }}</td>
-                            <td class="px-5 py-4 border-b border-gray-200">{{ $row->range_alat }}</td>
-                            <td class="px-5 py-4 border-b border-gray-200">{{ $row->tgl_kalibrasi }}</td>
-                            <td class="px-5 py-4 border-b border-gray-200">{{ $row->kalibrasi_selanjutnya }}</td>
-                            <td class="px-5 py-4 border-b border-gray-200">
-                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full whitespace-nowrap {{ $statusClass }}">
+                            {{-- PERUBAHAN: Padding diubah dari px-5 menjadi px-3 --}}
+                            <td class="px-3 py-4 border-b border-gray-200">{{ $row->id }}</td>
+                            <td class="px-3 py-4 border-b border-gray-200">{{ $row->kodefikasi }}</td>
+                            <td class="px-3 py-4 border-b border-gray-200">{{ $row->nama_alat }}</td>
+                            <td class="px-3 py-4 border-b border-gray-200">{{ $row->merk_type }}</td>
+                            <td class="px-3 py-4 border-b border-gray-200">{{ $row->no_seri }}</td>
+                            <td class="px-3 py-4 border-b border-gray-200">{{ $row->range_alat }}</td>
+                            <td class="px-3 py-4 border-b border-gray-200">{{ $row->tgl_kalibrasi }}</td>
+                            <td class="px-3 py-4 border-b border-gray-200">{{ $row->kalibrasi_selanjutnya }}</td>
+                            {{-- ISI kolom baru --}}
+                                <td class="px-3 py-4 border-b border-gray-200">
+                                    @if(!empty($row->kalibrasi_selanjutnya))
+                                        @php
+                                            $today = \Carbon\Carbon::today();
+                                            $nextCal = \Carbon\Carbon::parse($row->kalibrasi_selanjutnya);
+                                            $diff = $today->diffInDays($nextCal, false);
+                                        @endphp
+
+                                        @if($diff <= 7 && $diff >= 0)
+                                            <span class="text-yellow-600 font-semibold">H-7 Calibration</span>
+                                        @endif
+                                    @endif
+                                </td>
+                            <td class="px-3 py-4 border-b border-gray-200 text-center">
+                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusClass }}">
                                     {{ $row->status }}
                                 </span>
                             </td>
-                            <td class="px-5 py-4 border-b border-gray-200 text-center">
-                                {{-- Dibungkus dengan div flex agar tombol berdampingan --}}
+                            <td class="px-3 py-4 border-b border-gray-200 text-center">
                                 <div class="flex items-center justify-center gap-4">
                                     <a href="{{ route('admin.edit', [$jenis, $divisi, $row->id]) }}"
                                        class="font-medium text-indigo-600 hover:text-indigo-900">Edit</a>
@@ -147,7 +158,7 @@
                     @empty
                         {{-- Baris ini akan muncul HANYA JIKA $data kosong --}}
                         <tr>
-                            <td colspan="9" class="text-center py-6 px-4 text-gray-500 font-medium">
+                            <td colspan="10" class="text-center py-6 px-4 text-gray-500 font-medium">
                                 Data tidak ditemukan.
                             </td>
                         </tr>
@@ -162,6 +173,5 @@
         </div>
 
     </div>
-
 </body>
 </html>

@@ -37,13 +37,13 @@
           <!-- Dropdown animasi -->
           <div id="mobile-menu"
             class="absolute left-1/2 -translate-x-1/2 mt-2 w-40 bg-[#0085FF] text- rounded-lg shadow-lg overflow-hidden transform scale-y-0 origin-top transition-transform duration-300 z-50">
-            <a href="{{ route('chart.admin') }}"
+            <a href="{{ route('chart.user') }}"
               class="block px-5 py-2 hover:bg-[#0063c0] text-center">Dashboard</a>
 
-            <a href="{{ route('admin') }}"
+            <a href="{{ route('welcome') }}"
               class="block px-5 py-2 hover:bg-[#0063c0] text-center">Detail</a>
 
-            <a href="{{ route('kemampuanLabAdmin') }}"
+            <a href="{{ route('kemampuanLab') }}"
               class="block px-5 py-2 hover:bg-[#0063c0] text-center">Calibration Laboratory Capability </a>
 
             <a href="{{ route('logout') }}"
@@ -171,7 +171,7 @@
     // Fungsi pilih divisi
     function goToDivisi(divisi) {
       const jenis = document.getElementById('modal').getAttribute('data-jenis');
-      window.location.href = `/admin/${jenis}/${divisi}`;
+      window.location.href = `/${jenis}/${divisi}`;
     }
   </script>
 

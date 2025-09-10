@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class IntervalKalibrasi extends Model
 {
-    protected $table = 'interval_kalibrasi'; // bukan interval_kalibrasis
+    protected $table = 'interval_kalibrasi';
     protected $fillable = ['nama_alat', 'interval_bulan'];
+    public $timestamps = false; // tambahin biar ga error
 }

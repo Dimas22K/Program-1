@@ -5,6 +5,7 @@
         use App\Http\Controllers\AuthController;
         use App\Http\Controllers\AdminController;
         use App\Http\Controllers\KemampuanLabController;
+        use App\Http\Controllers\IntervalController;
 
         Route::get('/', function () {
             return view('login');
@@ -68,3 +69,11 @@
 
     Route::get('/kemampuanLab', [KemampuanLabController::class, 'index'])->name('kemampuanLab');
     Route::get('/kemampuanLabAdmin', [KemampuanLabController::class, 'indexAdmin'])->name('kemampuanLabAdmin');
+
+    //interval kalibtrasi
+    Route::get('/interval', [IntervalController::class, 'index'])->name('interval.index');
+    Route::get('/interval/create', [IntervalController::class, 'create'])->name('interval.create');
+    Route::post('/interval/store', [IntervalController::class, 'store'])->name('interval.store');
+    Route::get('/interval/{id}/edit', [IntervalController::class, 'edit'])->name('interval.edit');
+    Route::put('/interval/{id}', [IntervalController::class, 'update'])->name('interval.update');
+    Route::get('/interval/{id}/delete', [IntervalController::class, 'destroy'])->name('interval.delete');

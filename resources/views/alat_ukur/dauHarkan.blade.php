@@ -77,6 +77,7 @@
                         <th class="px-4 py-3 border-b-2 border-slate-600 text-left text-xs font-semibold uppercase tracking-wider">Range</th>
                         <th class="px-4 py-3 border-b-2 border-slate-600 text-left text-xs font-semibold uppercase tracking-wider">Tgl Kalibrasi</th>
                         <th class="px-4 py-3 border-b-2 border-slate-600 text-left text-xs font-semibold uppercase tracking-wider">Kalibrasi Berikutnya</th>
+                        <th class="px-4 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Calibration Plan</th>
                         <th class="px-4 py-3 border-b-2 border-slate-600 text-left text-xs font-semibold uppercase tracking-wider">Status</th>
                     </tr>
                 </thead>
@@ -114,6 +115,20 @@
                             <td class="px-4 py-3 border-b border-gray-200 whitespace-nowrap">{{ $row->range_alat }}</td>
                             <td class="px-4 py-3 border-b border-gray-200 whitespace-nowrap">{{ $row->tgl_kalibrasi }}</td>
                             <td class="px-4 py-3 border-b border-gray-200 whitespace-nowrap">{{ $row->kalibrasi_selanjutnya }}</td>
+                            {{-- ISI kolom baru --}}
+                                <td class="px-3 py-4 border-b border-gray-200">
+                                    @if(!empty($row->kalibrasi_selanjutnya))
+                                        @php
+                                            $today = \Carbon\Carbon::today();
+                                            $nextCal = \Carbon\Carbon::parse($row->kalibrasi_selanjutnya);
+                                            $diff = $today->diffInDays($nextCal, false);
+                                        @endphp
+
+                                        @if($diff <= 7 && $diff >= 0)
+                                            <span class="text-yellow-600 font-semibold">H-7 Calibration</span>
+                                        @endif
+                                    @endif
+                                </td>
                             <td class="px-4 py-3 border-b border-gray-200">
                                 <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusClass }}">
                                     {{ $row->status }}
