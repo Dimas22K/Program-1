@@ -1,92 +1,92 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Mesin Las Harkan - Admin</title>
+    <title>Kapsel Welding Machine Data - Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-100">
+<body class="bg-slate-100 font-sans">
 
-    {{-- Kontainer Utama untuk membatasi lebar dan meletakkannya di tengah --}}
-    <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+    {{-- Main container to center content and limit width --}}
+    <div class="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-8">
 
-        {{-- 1. Tombol Panah Kembali ke Halaman Welcome --}}
-        <a href="{{ url('/admin') }}" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors mb-4 group">
+        {{-- 1. Back Arrow Button to Welcome Page --}}
+        <a href="{{ url('/admin') }}" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors mb-6 group">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
             </svg>
-            <span>Kembali</span>
+            <span>Back</span>
         </a>
 
-    <div class="container mx-auto p-6">
-
-        <h1 class="text-3xl font-bold mb-6 text-slate-800">Data Mesin Las Kapsel (Admin)</h1>
+        <h1 class="text-3xl font-bold mb-6 text-slate-800">Kapsel Welding Machine Data (Admin)</h1>
 
         {{-- Filter Form --}}
-        <form method="GET" action="{{ url()->current() }}" class="mb-6 flex flex-wrap items-center gap-4 bg-white p-4 rounded-lg shadow-sm">
-            <div>
-                <label for="search" class="block text-sm font-medium text-gray-700">Search</label>
-                <input type="text" name="search" id="search" value="{{ request('search') }}"
-                       class="mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 w-60"
-                       placeholder="Kodefikasi / Nama / Merk">
-            </div>
-            <div>
-                <label for="tgl_mulai" class="block text-sm font-medium text-gray-700">Tanggal Kalibrasi</label>
-                <input type="date" name="tgl_mulai" id="tgl_mulai" value="{{ request('tgl_mulai') }}"
-                       class="mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 w-44">
-            </div>
-            <div>
-                <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
-                <select name="status" id="status" class="mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 w-40">
-                    <option value="">All</option>
-                    <option value="DONE"     {{ request('status') == 'DONE'     ? 'selected' : '' }}>DONE</option>
-                    <option value="RUSAK"    {{ request('status') == 'RUSAK'    ? 'selected' : '' }}>RUSAK</option>
-                    <option value="PROGRESS" {{ request('status') == 'PROGRESS' ? 'selected' : '' }}>PROGRESS</option>
-                    <option value="RE CAL"   {{ request('status') == 'RE CAL'   ? 'selected' : '' }}>RE CAL</option>
-                    <option value="OOT"      {{ request('status') == 'OOT'      ? 'selected' : '' }}>OOT</option>
-                </select>
-            </div>
-            <div class="pt-5">
-                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2 rounded-md shadow-sm transition-colors">
-                    Filter
-                </button>
-                <a href="{{ url()->current() }}" class="bg-gray-500 hover:bg-gray-600 text-white font-bold px-5 py-2 rounded-md shadow-sm transition-colors">
-                    Reset
-                </a>
-            </div>
-        </form>
+        <div class="bg-white p-4 rounded-lg shadow-sm mb-6">
+            <form method="GET" action="{{ url()->current() }}" class="flex flex-wrap items-end gap-4">
+                <div>
+                    <label for="search" class="block text-sm font-medium text-gray-700">Search</label>
+                    <input type="text" name="search" id="search" value="{{ request('search') }}"
+                           class="mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 w-60"
+                           placeholder="Code / Name / Brand">
+                </div>
+                <div>
+                    <label for="tgl_mulai" class="block text-sm font-medium text-gray-700">Calibration Date</label>
+                    <input type="date" name="tgl_mulai" id="tgl_mulai" value="{{ request('tgl_mulai') }}"
+                           class="mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 w-44">
+                </div>
+                <div>
+                    <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+                    <select name="status" id="status" class="mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 w-40">
+                        <option value="">All</option>
+                        <option value="DONE"     {{ request('status') == 'DONE'     ? 'selected' : '' }}>Done</option>
+                        <option value="RUSAK"    {{ request('status') == 'RUSAK'    ? 'selected' : '' }}>Broken</option>
+                        <option value="PROGRESS" {{ request('status') == 'PROGRESS' ? 'selected' : '' }}>In Progress</option>
+                        <option value="RE CAL"   {{ request('status') == 'RE CAL'   ? 'selected' : '' }}>Re-Calibration</option>
+                        <option value="OOT"      {{ request('status') == 'OOT'      ? 'selected' : '' }}>Out of Tolerance</option>
+                    </select>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2 rounded-md shadow-sm transition-colors">
+                        Filter
+                    </button>
+                    <a href="{{ url()->current() }}" class="bg-gray-500 hover:bg-gray-600 text-white font-bold px-5 py-2 rounded-md shadow-sm transition-colors">
+                        Reset
+                    </a>
+                </div>
+            </form>
+        </div>
 
-        {{-- Tombol Tambah Data --}}
-        <div class="mb-4">
+        {{-- Add Data Button --}}
+        <div class="mb-6">
             <a href="{{ route('admin.create', [$jenis, $divisi]) }}"
                class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg shadow-md transition-transform transform hover:scale-105">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>
-                Tambah Data
+                <span>Add Data</span>
             </a>
         </div>
 
-        {{-- Tabel Data. Dihapus overflow-x-auto agar tidak bisa scroll --}}
-        <div class="bg-white shadow-xl rounded-lg overflow-hidden">
-            <table class="w-full border-collapse">
+        {{-- Data Table: Wrapped in a div for horizontal scrolling on small screens --}}
+        <div class="bg-white shadow-xl rounded-lg overflow-x-auto">
+            <table class="w-full">
                 <thead class="bg-slate-800 text-white">
                     <tr>
-                        <th class="px-3 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">No</th>
-                        <th class="px-3 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Kodefikasi</th>
-                        <th class="px-3 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Nama Alat</th>
-                        <th class="px-3 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Merk / Type</th>
-                        <th class="px-3 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">No. Seri</th>
-                        <th class="px-8 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Range</th>
-                        <th class="px-3 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Tgl Kalibrasi</th>
-                        <th class="px-2 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Kalibrasi Berikutnya</th>
-                        <th class="px-3 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider">Calibration Plan</th>
-                        <th class="px-8 py-3 border-b-2 border-slate-700 text-center text-xs font-semibold uppercase tracking-wider">Status</th>
-                        <th class="px-3 py-3 border-b-2 border-slate-700 text-center text-xs font-semibold uppercase tracking-wider">Aksi</th>
+                        {{-- REFINED: Increased padding and ensured no wrapping for cleaner headers --}}
+                        <th class="px-6 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider whitespace-nowrap">No</th>
+                        <th class="px-6 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider whitespace-nowrap">Codification</th>
+                        <th class="px-6 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider whitespace-nowrap">Machine Name</th>
+                        <th class="px-6 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider whitespace-nowrap">Brand / Type</th>
+                        <th class="px-6 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider whitespace-nowrap">Serial Number</th>
+                        <th class="px-6 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider whitespace-nowrap">Range</th>
+                        <th class="px-6 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider whitespace-nowrap">Date</th>
+                        <th class="px-6 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider whitespace-nowrap">Due Date</th>
+                        <th class="px-6 py-3 border-b-2 border-slate-700 text-left text-xs font-semibold uppercase tracking-wider whitespace-nowrap">Calibration Plan</th>
+                        <th class="px-6 py-3 border-b-2 border-slate-700 text-center text-xs font-semibold uppercase tracking-wider whitespace-nowrap">Status</th>
+                        <th class="px-6 py-3 border-b-2 border-slate-700 text-center text-xs font-semibold uppercase tracking-wider whitespace-nowrap">Actions</th>
                     </tr>
                 </thead>
-                {{-- PERUBAHAN: Ukuran font di body tabel dikecilkan menjadi text-sm --}}
                 <tbody class="text-gray-700 text-sm">
                     @forelse($data as $row)
                         @php
@@ -109,57 +109,58 @@
                             };
                         @endphp
 
-                        <tr class="{{ $rowClass }} transition-colors duration-200">
-                            {{-- PERUBAHAN: Padding diubah dari px-5 menjadi px-3 --}}
-                            <td class="px-3 py-4 border-b border-gray-200">{{ $row->id }}</td>
-                            <td class="px-3 py-4 border-b border-gray-200">{{ $row->kodefikasi }}</td>
-                            <td class="px-3 py-4 border-b border-gray-200">{{ $row->nama_alat }}</td>
-                            <td class="px-3 py-4 border-b border-gray-200">{{ $row->merk_type }}</td>
-                            <td class="px-3 py-4 border-b border-gray-200">{{ $row->no_seri }}</td>
-                            <td class="px-3 py-4 border-b border-gray-200">{{ $row->range_alat }}</td>
-                            <td class="px-3 py-4 border-b border-gray-200">{{ $row->tgl_kalibrasi }}</td>
-                            <td class="px-3 py-4 border-b border-gray-200">{{ $row->kalibrasi_selanjutnya }}</td>
-                            {{-- ISI kolom baru --}}
-                                <td class="px-3 py-4 border-b border-gray-200">
-                                    @if(!empty($row->kalibrasi_selanjutnya))
-                                        @php
-                                            $today = \Carbon\Carbon::today();
-                                            $nextCal = \Carbon\Carbon::parse($row->kalibrasi_selanjutnya);
-                                            $diff = $today->diffInDays($nextCal, false);
-                                        @endphp
+                        <tr class="{{ $rowClass }} transition-colors duration-200 align-middle">
+                            {{-- REFINED: Consistent padding, added whitespace-nowrap where needed to prevent ugly wrapping --}}
+                            <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap">{{ $loop->iteration }}</td>
+                            <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap">{{ $row->kodefikasi }}</td>
+                            <td class="px-6 py-4 border-b border-gray-200 min-w-[200px]">{{ $row->nama_alat }}</td>
+                            <td class="px-6 py-4 border-b border-gray-200 min-w-[150px]">{{ $row->merk_type }}</td>
+                            <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap">{{ $row->no_seri }}</td>
+                            <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap">{{ $row->range_alat }}</td>
+                            <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap">{{ $row->tgl_kalibrasi }}</td>
+                            <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap">{{ $row->kalibrasi_selanjutnya }}</td>
+                            {{-- ISI kolom baru: Calibration Plan --}}
+                            <td class="px-3 py-4 border-b border-gray-200">
+                                @if(!empty($row->kalibrasi_selanjutnya))
+                                    @php
+                                        $nextCal  = \Carbon\Carbon::parse($row->kalibrasi_selanjutnya);
+                                        $planDate = $nextCal->copy()->subDays(7);
+                                    @endphp
 
-                                        @if($diff <= 7 && $diff >= 0)
-                                            <span class="text-yellow-600 font-semibold">H-7 Calibration</span>
-                                        @endif
-                                    @endif
-                                </td>
-                            <td class="px-3 py-4 border-b border-gray-200 text-center">
+                                    <span class="text-blue-600 font-semibold">
+                                        {{ $planDate->format('Y-m-d') }}
+                                    </span>
+                                @else
+                                    <span class="text-gray-400">-</span>
+                                @endif
+                            </td>
+                            <td class="px-6 py-4 border-b border-gray-200 text-center">
                                 <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusClass }}">
                                     {{ $row->status }}
                                 </span>
                             </td>
-                            <td class="px-3 py-4 border-b border-gray-200 text-center">
+                            <td class="px-6 py-4 border-b border-gray-200 text-center whitespace-nowrap">
                                 <div class="flex items-center justify-center gap-4">
                                     <a href="{{ route('admin.edit', [$jenis, $divisi, $row->id]) }}"
                                        class="font-medium text-indigo-600 hover:text-indigo-900">Edit</a>
-
                                     <form action="{{ route('admin.delete', [$jenis, $divisi, $row->id]) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                                onclick="return confirm('Yakin ingin menghapus data ini?')"
+                                                onclick="return confirm('Are you sure you want to delete this data?')"
                                                 class="font-medium text-red-600 hover:text-red-900">
-                                            Hapus
+                                            Delete
                                         </button>
                                     </form>
                                 </div>
                             </td>
                         </tr>
                     @empty
-                        {{-- Baris ini akan muncul HANYA JIKA $data kosong --}}
+                        {{-- This row will only appear if $data is empty --}}
+                        {{-- FIXED: colspan is now 11 to match the number of columns --}}
                         <tr>
-                            <td colspan="10" class="text-center py-6 px-4 text-gray-500 font-medium">
-                                Data tidak ditemukan.
+                            <td colspan="11" class="text-center py-10 px-4 text-gray-500 font-medium">
+                                No data found.
                             </td>
                         </tr>
                     @endforelse

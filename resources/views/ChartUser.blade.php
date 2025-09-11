@@ -128,7 +128,7 @@
                     </div>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow">
-                    <h2 class="text-xl font-semibold text-slate-800">Measuring Instrument Status per Division</h2>
+                    <h2 class="text-xl font-semibold text-slate-800">Welding Machine Status per Division</h2>
                     <div class="relative h-96 overflow-x-auto mt-4 custom-scrollbar">
                         <div id="chartContainerMesinLas" class="h-full">
                             <canvas id="chartMesinLas"></canvas>

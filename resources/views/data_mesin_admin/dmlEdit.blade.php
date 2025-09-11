@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Data Mesin Las</title>
+    <title>Welding Machine Data Update</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gradient-to-br from-cyan-200 via-teal-200 to-blue-300">
@@ -21,7 +21,7 @@
             </div>
 
             <h2 class="text-3xl font-bold mb-8 text-center text-teal-800">
-                Update Data Mesin las
+                Update Welding Machine Data
             </h2>
 
             <form action="{{ route('admin.update', [$jenis, $divisi, $row->id]) }}" method="POST" class="space-y-5">
@@ -29,12 +29,12 @@
                 @method('PUT')
 
                 <div>
-                    <label for="kodefikasi" class="block text-sm font-medium text-slate-700">Kodefikasi</label>
+                    <label for="kodefikasi" class="block text-sm font-medium text-slate-700">Codefication</label>
                     <input type="text" id="kodefikasi" name="kodefikasi" value="{{ $row->kodefikasi }}" class="w-full mt-2 bg-white/70 border-2 border-cyan-200 rounded-lg py-2 px-3 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition duration-300 hover:border-teal-400" required>
                 </div>
 
                 <div>
-                    <label for="nama_alat" class="block text-sm font-medium text-slate-700">Nama Alat</label>
+                    <label for="nama_alat" class="block text-sm font-medium text-slate-700">Welding Machine Name</label>
                     <input type="text" id="nama_alat" name="nama_alat" value="{{ $row->nama_alat }}" class="w-full mt-2 bg-white/70 border-2 border-cyan-200 rounded-lg py-2 px-3 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition duration-300 hover:border-teal-400" required>
                 </div>
 
@@ -44,19 +44,19 @@
                         <input type="text" id="merk_type" name="merk_type" value="{{ $row->merk_type }}" class="w-full mt-2 bg-white/70 border-2 border-cyan-200 rounded-lg py-2 px-3 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition duration-300 hover:border-teal-400">
                     </div>
                     <div>
-                        <label for="no_seri" class="block text-sm font-medium text-slate-700">No Seri</label>
+                        <label for="no_seri" class="block text-sm font-medium text-slate-700">Serial Number</label>
                         <input type="text" id="no_seri" name="no_seri" value="{{ $row->no_seri }}" class="w-full mt-2 bg-white/70 border-2 border-cyan-200 rounded-lg py-2 px-3 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition duration-300 hover:border-teal-400">
                     </div>
                 </div>
 
                 <div>
-                    <label for="range_alat" class="block text-sm font-medium text-slate-700">Range Alat</label>
+                    <label for="range_alat" class="block text-sm font-medium text-slate-700">Range</label>
                     <input type="text" id="range_alat" name="range_alat" value="{{ $row->range_alat }}" class="w-full mt-2 bg-white/70 border-2 border-cyan-200 rounded-lg py-2 px-3 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition duration-300 hover:border-teal-400">
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label for="tgl_kalibrasi" class="block text-sm font-medium text-slate-700">Tanggal Kalibrasi</label>
+                        <label for="tgl_kalibrasi" class="block text-sm font-medium text-slate-700">Date</label>
                         <input type="date" id="tgl_kalibrasi" name="tgl_kalibrasi" value="{{ $row->tgl_kalibrasi }}" class="w-full mt-2 bg-white/70 border-2 border-cyan-200 rounded-lg py-2 px-3 placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition duration-300 hover:border-teal-400">
                     </div>
                 </div>
