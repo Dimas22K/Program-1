@@ -47,7 +47,7 @@
               class="block px-5 py-2 hover:bg-[#0063c0] text-center">Calibration Laboratory Capability </a>
 
             <a href="{{ route('interval.index') }}"
-               class="block px-5 py-2 hover:bg-[#0063c0] text-center">Interval Kalibrasi</a>
+               class="block px-5 py-2 hover:bg-[#0063c0] text-center">Calibration Interval</a>
 
             <a href="{{ route('logout') }}"
               class="block px-5 py-2 hover:bg-[#0063c0] text-center">Logout</a>
@@ -92,35 +92,35 @@
   <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
     <div class="bg-white rounded-lg shadow-lg p-8 max-w-7xl w-[90%] relative">
       <button onclick="closeModal()" class="absolute top-3 right-4 text-2xl font-bold hover:text-red-500 transition">&times;</button>
-      <h2 class="text-center text-2xl font-bold mb-8">Pilih Divisi</h2>
+      <h2 class="text-center text-2xl font-bold mb-8">Choose Division</h2>
 
       <!-- Flex container -->
       <div class="flex flex-wrap justify-center gap-8">
         <!-- Baris 1 -->
         <div onclick="goToDivisi('kania')" class="relative cursor-pointer w-72 h-44 hover:scale-105 transition-transform duration-200">
           <img src="/images/divisikania.png" class="w-full h-full object-cover rounded-lg">
-          <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-30">Kania Division</p>
+          <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-30">Merchant Ship Division</p>
         </div>
 
         <div onclick="goToDivisi('kapsel')" class="relative cursor-pointer w-72 h-44 hover:scale-105 transition-transform duration-200">
           <img src="/images/divisikapsel.png" class="w-full h-full object-cover rounded-lg">
-          <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-30">Kapsel Division</p>
+          <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-30">Submarine Ship Division</p>
         </div>
 
         <div onclick="goToDivisi('kaprang')" class="relative cursor-pointer w-72 h-44 hover:scale-105 transition-transform duration-200">
           <img src="/images/divisikaprang.png" class="w-full h-full object-cover rounded-lg">
-          <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-30">Kaprang Division</p>
+          <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-30">War Ship Division</p>
         </div>
 
         <!-- Baris 2 -->
         <div onclick="goToDivisi('harkan')" class="relative cursor-pointer w-72 h-44 hover:scale-105 transition-transform duration-200">
           <img src="/images/divisiharkan.png" class="w-full h-full object-cover rounded-lg">
-          <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-30">Harkan Division</p>
+          <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-30">MRO Division</p>
         </div>
 
         <div onclick="goToDivisi('rekum')" class="relative cursor-pointer w-72 h-44 hover:scale-105 transition-transform duration-200">
           <img src="/images/divisirekum.png" class="w-full h-full object-cover rounded-lg">
-          <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-30">Rekum Division</p>
+          <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-30">General Engineering Division</p>
         </div>
       </div>
     </div>

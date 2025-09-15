@@ -111,7 +111,7 @@
 
                         <tr class="{{ $rowClass }} transition-colors duration-200 align-middle">
                             {{-- REFINED: Removed whitespace-nowrap to let content wrap naturally --}}
-                            <td class="px-4 py-4 border-b border-gray-200">{{ $loop->iteration }}</td>
+                            <td class="px-4 py-4 border-b border-gray-200">{{ $row->id }}</td>
                             <td class="px-4 py-4 border-b border-gray-200 break-words">{{ $row->kodefikasi }}</td>
                             <td class="px-4 py-4 border-b border-gray-200 break-words">{{ $row->nama_alat }}</td>
                             <td class="px-4 py-4 border-b border-gray-200 break-words">{{ $row->merk_type }}</td>

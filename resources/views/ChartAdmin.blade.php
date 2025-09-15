@@ -64,7 +64,7 @@
                                 class="block px-5 py-2 hover:bg-[#0063c0] text-center">Calibration Laboratory Capability </a>
 
                             <a href="{{ route('interval.index') }}"
-                                class="block px-5 py-2 hover:bg-[#0063c0] text-center">Interval Kalibrasi</a>
+                                class="block px-5 py-2 hover:bg-[#0063c0] text-center">Calibration Interval</a>
 
                             <a href="{{ route('logout') }}"
                                 class="block px-5 py-2 hover:bg-[#0063c0] text-center">Logout</a>

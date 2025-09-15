@@ -111,7 +111,7 @@
 
                         <tr class="{{ $rowClass }} transition-colors duration-200 align-top">
                             {{-- REFINED: Added break-words to allow text to wrap within the fixed column widths --}}
-                            <td class="px-2 py-4 border-b border-gray-200 break-words">{{ $loop->iteration }}</td>
+                            <td class="px-2 py-4 border-b border-gray-200 break-words">{{ $row->id }}</td>
                             <td class="px-2 py-4 border-b border-gray-200 break-words">{{ $row->kodefikasi }}</td>
                             <td class="px-2 py-4 border-b border-gray-200 break-words">{{ $row->nama_alat }}</td>
                             <td class="px-2 py-4 border-b border-gray-200 break-words">{{ $row->merk_type }}</td>

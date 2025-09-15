@@ -111,7 +111,7 @@
 
                         <tr class="{{ $rowClass }} transition-colors duration-200 align-middle">
                             {{-- REFINED: Consistent padding, added whitespace-nowrap where needed to prevent ugly wrapping --}}
-                            <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap">{{ $loop->iteration }}</td>
+                            <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap">{{ $row->id }}</td>
                             <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap">{{ $row->kodefikasi }}</td>
                             <td class="px-6 py-4 border-b border-gray-200 min-w-[200px]">{{ $row->nama_alat }}</td>
                             <td class="px-6 py-4 border-b border-gray-200 min-w-[150px]">{{ $row->merk_type }}</td>
