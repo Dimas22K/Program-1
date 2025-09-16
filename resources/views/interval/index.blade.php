@@ -44,7 +44,7 @@
             <div id="mobile-menu"
               class="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-[#0085FF] rounded-lg shadow-lg overflow-hidden transform scale-y-0 origin-top transition-transform duration-200 z-50"
               style="transform-origin: top center;">
-              <a href="{{ route('chart.user') }}" class="block px-5 py-2 hover:bg-[#0063c0] text-center">Dashboard</a>
+              <a href="{{ route('chart.admin') }}" class="block px-5 py-2 hover:bg-[#0063c0] text-center">Dashboard</a>
               <a href="{{ route('admin') }}" class="block px-5 py-2 hover:bg-[#0063c0] text-center">Detail</a>
               <a href="{{ route('kemampuanLabAdmin') }}" class="block px-5 py-2 hover:bg-[#0063c0] text-center">Calibration Laboratory Capability</a>
               <a href="{{ route('interval.index') }}" class="block px-5 py-2 hover:bg-[#0063c0] text-center">Calibration Interval</a>
