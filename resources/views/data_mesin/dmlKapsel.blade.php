@@ -44,10 +44,7 @@
                     <select name="status" id="status" class="mt-1 border-gray-300 rounded-md shadow-sm w-40">
                         <option value="">All</option>
                         <option value="DONE" {{ request('status') == 'DONE' ? 'selected' : '' }}>DONE</option>
-                        <option value="BROKEN" {{ request('status') == 'BROKEN' ? 'selected' : '' }}>BROKEN</option>
-                        <option value="PROGRESS" {{ request('status') == 'PROGRESS' ? 'selected' : '' }}>PROGRESS</option>
                         <option value="RE CAL" {{ request('status') == 'RE CAL' ? 'selected' : '' }}>RE CAL</option>
-                        <option value="OOT" {{ request('status') == 'OOT' ? 'selected' : '' }}>OOT</option>
                     </select>
                 </div>
 
@@ -82,38 +79,25 @@
                         @php
                             // NORMALIZE key jadi nilai enum yang kita pakai
                             $statusKey = strtoupper(trim($row->status)); // pastikan kapital
-                            // jika masih ada legacy 'RUSAK', perlakukan sebagai 'BROKEN'
-                            if ($statusKey === 'RUSAK') {
-                                $statusKey = 'BROKEN';
-                            }
 
                             // kelas baris
                             $rowClass = match ($statusKey) {
                                 'DONE' => 'bg-green-50 hover:bg-green-100',
-                                'BROKEN' => 'bg-red-100 hover:bg-red-200 font-medium text-red-900',
-                                'PROGRESS' => 'bg-blue-50 hover:bg-blue-100',
                                 'RE CAL' => 'bg-yellow-50 hover:bg-yellow-100',
-                                'OOT' => 'bg-purple-50 hover:bg-purple-100',
                                 default => 'hover:bg-gray-50'
                             };
 
                             // kelas label/status
                             $statusClass = match ($statusKey) {
                                 'DONE' => 'bg-green-200 text-green-800',
-                                'BROKEN' => 'bg-red-500 text-white',
-                                'PROGRESS' => 'bg-blue-200 text-blue-800',
                                 'RE CAL' => 'bg-yellow-300 text-yellow-900',
-                                'OOT' => 'bg-purple-300 text-purple-900',
                                 default => 'bg-gray-200 text-gray-800'
                             };
 
                             // label ramah pengguna
                             $statusLabelMap = [
                                 'DONE' => 'DONE',
-                                'BROKEN' => 'BROKEN',
-                                'PROGRESS' => 'PROGRESS',
                                 'RE CAL' => 'RE CAL',
-                                'OOT' => 'OOT',
                             ];
                             $displayLabel = $statusLabelMap[$statusKey] ?? $row->status;
                         @endphp
