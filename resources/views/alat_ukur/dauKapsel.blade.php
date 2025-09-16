@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submarine Ship Measuring Instruments Data</title>
+    <title>Submarine Measuring Instruments Data</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-100 font-sans">
@@ -16,7 +16,7 @@
             <span>Back</span>
         </a>
 
-        <h1 class="text-3xl font-bold mb-6 text-slate-800">Submarine Ship Measuring Instruments Data</h1>
+        <h1 class="text-3xl font-bold mb-6 text-slate-800">Submarine Measuring Instruments Data</h1>
 
         <div class="bg-white p-4 rounded-lg shadow-sm mb-6">
             <form method="GET" action="{{ url()->current() }}" class="flex flex-wrap items-end gap-4">
