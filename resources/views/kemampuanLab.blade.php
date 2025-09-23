@@ -5,7 +5,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 font-sans">
-    
+
 <header class="fixed top-0 left-0 w-full z-50 bg-[#2ba7cf] text-white py-4 shadow-md">
   <div class="max-w-7xl mx-auto px-4 md:px-3 flex items-center justify-between">
     <!-- Logo Kiri -->
@@ -96,9 +96,9 @@
         <div class="bg-white shadow-lg rounded-xl overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="min-w-full">
-                    
+
                     {{-- Diubah: Header diberi background indigo solid dengan teks putih --}}
-                    <thead class="bg-indigo-700"> 
+                    <thead class="bg-indigo-700">
                         <tr>
                             <th class="px-6 py-3 text-center text-xs font-semibold text-white uppercase tracking-wider w-16">No</th>
                             <th class="px-6 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">Measurement Group</th>
@@ -111,18 +111,18 @@
                         @foreach($data as $row)
                         {{-- Diubah: Efek hover & warna baris genap disesuaikan dengan tema --}}
                         <tr class="even:bg-indigo-50/60 hover:bg-indigo-100 transition-colors duration-150">
-                            
+
                             <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium text-gray-800 align-top">{{ $row->No }}</td>
-                            
+
                             {{-- Diubah: Teks 'Kelompok Pengukuran' diberi warna aksen --}}
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-indigo-900 align-top">{{ $row->Kelompok_Pengukuran }}</td>
-                            
+
                             <td class="px-6 py-4 text-sm text-gray-700 align-top">
                                 @foreach(explode(',', $row->alat_ukur) as $alat)
                                     <span class="block">{{ trim($alat) }}</span>
                                 @endforeach
                             </td>
-                            
+
                             <td class="px-6 py-4 text-sm text-gray-600 align-top">
                                 @foreach(explode(',', $row->rentang_ukur) as $rentang)
                                     <span class="block whitespace-nowrap">{{ str_replace('~', ' ~ ', trim($rentang)) }}</span>
@@ -142,7 +142,3 @@
     </div>
 </body>
 </html>
-
-
-
-//tes//
