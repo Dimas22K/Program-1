@@ -82,7 +82,7 @@
                                         $rowClass = 'bg-blue-50 hover:bg-blue-100';
                                         $textClass = 'text-blue-800';
                                         break;
-                                    case 'Dimensions':
+                                    case 'Dimension':
                                         $rowClass = 'bg-green-50 hover:bg-green-100';
                                         $textClass = 'text-green-800';
                                         break;
@@ -90,8 +90,8 @@
                                         $rowClass = 'bg-amber-50 hover:bg-amber-100';
                                         $textClass = 'text-amber-800';
                                         break;
-                                    case 'Time & Frequency':
-                                        $rowClass = 'bg-pink-200 hover:bg-pink-300';
+                                    case 'Time and Frequency':
+                                        $rowClass = 'bg-pink-50 hover:bg-pink-100';
                                         $textClass = 'text-pink-800';
                                         break;
                                     default:
