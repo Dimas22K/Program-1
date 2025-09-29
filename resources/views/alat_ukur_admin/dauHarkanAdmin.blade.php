@@ -74,6 +74,7 @@
                         <th class="w-[8%] px-2 py-3 text-left text-xs font-semibold uppercase">Due Date</th>
                         <th class="w-[12%] px-2 py-3 text-left text-xs font-semibold uppercase">Calibration Plan</th>
                         <th class="w-[8%] px-2 py-3 text-center text-xs font-semibold uppercase">Status</th>
+                        <th class="w-[12%] px-2 py-3 text-left text-xs font-semibold uppercase">Description</th>
                         <th class="w-[10%] px-2 py-3 text-center text-xs font-semibold uppercase">Action</th>
                     </tr>
                 </thead>
@@ -82,7 +83,7 @@
                     @forelse($data as $row)
                         @php
                             $statusKey = strtoupper(trim($row->status));
-                            
+
                             $rowClass = match($statusKey) {
                                 'DONE'     => 'bg-green-50 hover:bg-green-100',
                                 'RE CAL'   => 'bg-yellow-50 hover:bg-yellow-100',
@@ -122,11 +123,15 @@
                                     <span class="text-gray-400">-</span>
                                 @endif
                             </td>
+                            
                             <td class="px-2 py-4 border-b border-gray-200 text-center">
                                 <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusClass }}">
                                     {{ $displayLabel }}
                                 </span>
                             </td>
+                            <td class="px-2 py-4 border-b border-gray-200">
+    {{ $row->description ?? '-' }}
+</td>  
                             <td class="px-2 py-4 border-b border-gray-200 text-center">
                                 <div class="flex items-center justify-center gap-4">
                                     <a href="{{ route('admin.edit', [$jenis, $divisi, $row->id]) }}"
@@ -151,6 +156,7 @@
                 </tbody>
             </table>
         </div>
+
 
         <div class="mt-6">
             {{ $data->withQueryString()->links() }}

@@ -71,6 +71,7 @@
                         <th class="w-[8%] px-2 py-3 text-left text-xs font-semibold uppercase">Due Date</th>
                         <th class="w-[12%] px-2 py-3 text-left text-xs font-semibold uppercase">Calibration Plan</th>
                         <th class="w-[10%] px-2 py-3 text-center text-xs font-semibold uppercase">Status</th>
+                        <th class="w-[12%] px-2 py-3 text-left text-xs font-semibold uppercase">Description</th>
                     </tr>
                 </thead>
 
@@ -81,23 +82,23 @@
                             $statusKey = strtoupper(trim($row->status)); // pastikan kapital
 
                             // kelas baris
-                            $rowClass = match ($statusKey) {
-                                'DONE' => 'bg-green-50 hover:bg-green-100',
-                                'RE CAL' => 'bg-yellow-50 hover:bg-yellow-100',
-                                default => 'hover:bg-gray-50'
+                            $rowClass = match($statusKey) {
+                                'DONE'     => 'bg-green-50 hover:bg-green-100',
+                                'RE CAL'   => 'bg-yellow-50 hover:bg-yellow-100',
+                                default    => 'hover:bg-gray-50'
                             };
 
                             // kelas label/status
-                            $statusClass = match ($statusKey) {
-                                'DONE' => 'bg-green-200 text-green-800',
-                                'RE CAL' => 'bg-yellow-300 text-yellow-900',
-                                default => 'bg-gray-200 text-gray-800'
+                            $statusClass = match($statusKey) {
+                                'DONE'     => 'bg-green-200 text-green-800',
+                                'RE CAL'   => 'bg-yellow-300 text-yellow-900',
+                                default    => 'bg-gray-200 text-gray-800'
                             };
 
                             // label ramah pengguna
                             $statusLabelMap = [
-                                'DONE' => 'DONE',
-                                'RE CAL' => 'RE CAL',
+                                'DONE'     => 'DONE',
+                                'RE CAL'   => 'RE CAL',
                             ];
                             $displayLabel = $statusLabelMap[$statusKey] ?? $row->status;
                         @endphp
@@ -114,7 +115,7 @@
                             <td class="px-3 py-4 border-b border-gray-200">
                                 @if(!empty($row->kalibrasi_selanjutnya))
                                     @php
-                                        $nextCal = \Carbon\Carbon::parse($row->kalibrasi_selanjutnya);
+                                        $nextCal  = \Carbon\Carbon::parse($row->kalibrasi_selanjutnya);
                                         $planDate = $nextCal->copy()->subDays(7);
                                     @endphp
                                     <span class="text-blue-600 font-semibold">{{ $planDate->format('Y-m-d') }}</span>
@@ -123,11 +124,13 @@
                                 @endif
                             </td>
                             <td class="px-2 py-4 border-b border-gray-200 text-center">
-                                <span
-                                    class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusClass }}">
+                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusClass }}">
                                     {{ $displayLabel }}
                                 </span>
                             </td>
+                            <td class="px-2 py-4 border-b border-gray-200">
+    {{ $row->description ?? '-' }}
+</td>
                         </tr>
                     @empty
                         <tr>
