@@ -1,79 +1,84 @@
 <?php
 
-        use Illuminate\Support\Facades\Route;
-        use App\Http\Controllers\DivisiController;
-        use App\Http\Controllers\AuthController;
-        use App\Http\Controllers\AdminController;
-        use App\Http\Controllers\KemampuanLabController;
-        use App\Http\Controllers\IntervalController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DivisiController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\KemampuanLabController;
+use App\Http\Controllers\IntervalController;
 
-        Route::get('/', function () {
-            return view('login');
-        });
-                                                                                                    
-        // Login
-        Route::get('/login', [AuthController::class, 'showLogin'])->name('login');  
-        Route::post('/login', [AuthController::class, 'login']);                                                                                                        
+Route::get('/', function () {
+    return view('login');
+});
 
-        // Chart User
-        Route::get('/chart-user', [AuthController::class, 'chartUser'])->name('chart.user');
+// Login
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
 
-        // Chart Admin
-        Route::get('/chart-admin', [AuthController::class, 'chartAdmin'])->name('chart.admin');
+// Chart User
+Route::get('/chart-user', [AuthController::class, 'chartUser'])->name('chart.user');
 
-
-        // Chart Data (JSON untuk grafik admin)
-        Route::get('/chart-data', [AdminController::class, 'getChartData'])->name('chart.data');
+// Chart Admin
+Route::get('/chart-admin', [AuthController::class, 'chartAdmin'])->name('chart.admin');
 
 
-        // Logout
-        Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+// Chart Data (JSON untuk grafik admin)
+Route::get('/chart-data', [AdminController::class, 'getChartData'])->name('chart.data');
 
-        // Admin dashboard
-        /*Route::get('/admin', function () {
-            return view('admin');
-        })->name('admin');*/
-        Route::get('/admin', [AuthController::class, 'adminDashboard'])->name('admin');
 
-        Route::get('/welcome', function () {
-            return view('welcome');
-        })->name('welcome');
+// Logout
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-        // Dinamis: /data-mesin/kania atau /alat-ukur/kaprang, dll
-        Route::get('/{jenis}/{divisi}', [DivisiController::class, 'show'])
-            ->where('jenis', 'data-mesin|alat-ukur')
-            ->where('divisi', 'kania|kapsel|kaprang|harkan|rekum');
+// Admin dashboard
+/*Route::get('/admin', function () {
+    return view('admin');
+})->name('admin');*/
+Route::get('/admin', [AuthController::class, 'adminDashboard'])->name('admin');
 
-         Route::prefix('admin')->group(function () {
-        // index: /admin/data-mesin/kania
-        Route::get('/{jenis}/{divisi}', [AdminController::class, 'index'])
-            ->where('jenis', 'data-mesin|alat-ukur')
-            ->where('divisi', 'kania|kapsel|kaprang|harkan|rekum')
-            ->name('admin.divisi');
+Route::get('/welcome', function () {
+    return view('welcome');
+})->name('welcome');
 
-        // create
-        Route::get('/{jenis}/{divisi}/create', [AdminController::class, 'create'])->name('admin.create');
+// Dinamis: /data-mesin/kania atau /alat-ukur/kaprang, dll
+Route::get('/{jenis}/{divisi}', [DivisiController::class, 'show'])
+    ->where('jenis', 'data-mesin|alat-ukur')
+    ->where('divisi', 'kania|kapsel|kaprang|harkan|rekum');
 
-        // store
-        Route::post('/{jenis}/{divisi}/store', [AdminController::class, 'store'])->name('admin.store');
+Route::prefix('admin')->group(function () {
+    // index: /admin/data-mesin/kania
+    Route::get('/{jenis}/{divisi}', [AdminController::class, 'index'])
+        ->where('jenis', 'data-mesin|alat-ukur')
+        ->where('divisi', 'kania|kapsel|kaprang|harkan|rekum')
+        ->name('admin.divisi');
 
-        // edit
-        Route::get('/{jenis}/{divisi}/{id}/edit', [AdminController::class, 'edit'])->name('admin.edit');
+    // create
+    Route::get('/{jenis}/{divisi}/create', [AdminController::class, 'create'])->name('admin.create');
 
-        // update
-        Route::put('/{jenis}/{divisi}/{id}', [AdminController::class, 'update'])->name('admin.update');
+    // store
+    Route::post('/{jenis}/{divisi}/store', [AdminController::class, 'store'])->name('admin.store');
 
-        // delete
-        Route::delete('/{jenis}/{divisi}/{id}', [AdminController::class, 'destroy'])->name('admin.delete');
-    });
+    // edit
+    Route::get('/{jenis}/{divisi}/{id}/edit', [AdminController::class, 'edit'])->name('admin.edit');
 
-    Route::get('/kemampuanLab', [KemampuanLabController::class, 'index'])->name('kemampuanLab');
-    Route::get('/kemampuanLabAdmin', [KemampuanLabController::class, 'indexAdmin'])->name('kemampuanLabAdmin');
+    // update
+    Route::put('/{jenis}/{divisi}/{id}', [AdminController::class, 'update'])->name('admin.update');
 
-    //interval kalibtrasi
-    Route::get('/interval', [IntervalController::class, 'index'])->name('interval.index');
-    Route::get('/interval/create', [IntervalController::class, 'create'])->name('interval.create');
-    Route::post('/interval/store', [IntervalController::class, 'store'])->name('interval.store');
-    Route::get('/interval/{id}/edit', [IntervalController::class, 'edit'])->name('interval.edit');
-    Route::put('/interval/{id}', [IntervalController::class, 'update'])->name('interval.update');
-    Route::get('/interval/{id}/delete', [IntervalController::class, 'destroy'])->name('interval.delete');
+    // delete
+    Route::delete('/{jenis}/{divisi}/{id}', [AdminController::class, 'destroy'])->name('admin.delete');
+});
+
+Route::get('/kemampuanLab', [KemampuanLabController::class, 'index'])->name('kemampuanLab');
+Route::get('/kemampuanLabAdmin', [KemampuanLabController::class, 'indexAdmin'])->name('kemampuanLabAdmin');
+
+//interval kalibtrasi
+Route::get('/interval', [IntervalController::class, 'index'])->name('interval.index');
+Route::get('/interval/create', [IntervalController::class, 'create'])->name('interval.create');
+Route::post('/interval/store', [IntervalController::class, 'store'])->name('interval.store');
+Route::get('/interval/{id}/edit', [IntervalController::class, 'edit'])->name('interval.edit');
+Route::put('/interval/{id}', [IntervalController::class, 'update'])->name('interval.update');
+Route::get('/interval/{id}/delete', [IntervalController::class, 'destroy'])->name('interval.delete');
+
+Route::get('/admin/{jenis}/{divisi}/export', [AdminController::class, 'export'])->name('admin.export');
+Route::get('/admin/{jenis}/{divisi}', [AdminController::class, 'index'])->name('admin.index');
+Route::get('/user/{jenis}/{divisi}/export', [AdminController::class, 'export'])->name('user.export');
+Route::get('/user/{jenis}/{divisi}', [AdminController::class, 'index'])->name('user.index');

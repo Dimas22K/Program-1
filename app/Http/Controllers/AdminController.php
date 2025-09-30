@@ -5,17 +5,33 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\InstrumentsExport;
 
 class AdminController extends Controller
 {
+    public function export(Request $request, $jenis, $divisi)
+    {
+        // 1. Mendapatkan nama tabel berdasarkan jenis dan divisi (dau_kania, dml_kania, dll.)
+        $table = $this->getTableName($jenis, $divisi);
+
+        // 2. Nama file yang akan didownload
+        $fileName = 'Data_Instrumen_' . $jenis . '_' . $divisi . '_' . time() . '.xlsx';
+
+        // 3. Mengembalikan file Excel yang didownload
+        //    Membuat instance InstrumentsExport dan Meneruskan DUA argumen: 
+        //    Request (filter) dan Nama Tabel ($table)
+        return Excel::download(new InstrumentsExport($request, $table), $fileName);
+    }
+
     // =========================
     // 🔧 Mapping Divisi → Label Baru
     // =========================
     private $labelMap = [
-        'kania'  => 'Merchant Div',
+        'kania' => 'Merchant Div',
         'kapsel' => 'Submarine Div',
-        'kaprang'=> 'War Ship Div',
-        'rekum'  => 'General Eng. Div',
+        'kaprang' => 'War Ship Div',
+        'rekum' => 'General Eng. Div',
         'harkan' => 'MRO Div',
     ];
 
@@ -34,9 +50,9 @@ class AdminController extends Controller
             $searchTerm = $request->search;
             $query->where(function ($q) use ($searchTerm) {
                 $q->where('kodefikasi', 'like', '%' . $searchTerm . '%')
-                  ->orWhere('nama_alat', 'like', '%' . $searchTerm . '%')
-                  ->orWhere('merk_type', 'like', '%' . $searchTerm . '%')
-                  ->orWhere('description', 'like', '%' . $searchTerm . '%'); // ✅ ikut difilter
+                    ->orWhere('nama_alat', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('merk_type', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('description', 'like', '%' . $searchTerm . '%'); // ✅ ikut difilter
             });
         }
         if ($request->filled('tgl_mulai')) {
@@ -49,26 +65,26 @@ class AdminController extends Controller
         $data = $query->orderBy('id', 'asc')->paginate(20);
 
         $filterParams = [
-            'search'    => $request->search,
+            'search' => $request->search,
             'tgl_mulai' => $request->tgl_mulai,
-            'status'    => $request->status,
+            'status' => $request->status,
         ];
 
         $folder = $jenis === 'data-mesin' ? 'data_mesin_admin' : 'alat_ukur_admin';
         $mapView = [
             'data-mesin' => [
-                'kania'  => 'dmlKaniaAdmin',
+                'kania' => 'dmlKaniaAdmin',
                 'kapsel' => 'dmlKapselAdmin',
-                'kaprang'=> 'dmlKaprangAdmin',
+                'kaprang' => 'dmlKaprangAdmin',
                 'harkan' => 'dmlHarkanAdmin',
-                'rekum'  => 'dmlRekumAdmin',
+                'rekum' => 'dmlRekumAdmin',
             ],
             'alat-ukur' => [
-                'kania'  => 'dauKaniaAdmin',
+                'kania' => 'dauKaniaAdmin',
                 'kapsel' => 'dauKapselAdmin',
-                'kaprang'=> 'dauKaprangAdmin',
+                'kaprang' => 'dauKaprangAdmin',
                 'harkan' => 'dauHarkanAdmin',
-                'rekum'  => 'dauRekumAdmin',
+                'rekum' => 'dauRekumAdmin',
             ],
         ];
 
@@ -117,15 +133,15 @@ class AdminController extends Controller
         $divisiLabel = $this->labelMap[$divisi] ?? ucfirst($divisi);
 
         $validated = $request->validate([
-            'kodefikasi'             => 'required|string|max:50',
-            'nama_alat'              => 'required|string|max:100',
-            'merk_type'              => 'nullable|string|max:100',
-            'no_seri'                => 'nullable|string|max:50',
-            'range_alat'             => 'nullable|string|max:50',
-            'tgl_kalibrasi'          => 'nullable|date',
-            'kalibrasi_selanjutnya'  => 'nullable|date',
-            'status'                 => 'required|string',
-            'description'            => 'nullable|string', // ✅ wajib ada
+            'kodefikasi' => 'required|string|max:50',
+            'nama_alat' => 'required|string|max:100',
+            'merk_type' => 'nullable|string|max:100',
+            'no_seri' => 'nullable|string|max:50',
+            'range_alat' => 'nullable|string|max:50',
+            'tgl_kalibrasi' => 'nullable|date',
+            'kalibrasi_selanjutnya' => 'nullable|date',
+            'status' => 'required|string',
+            'description' => 'nullable|string', // ✅ wajib ada
         ]);
 
         DB::table($table)->where('id', $id)->update($validated);
@@ -161,37 +177,37 @@ class AdminController extends Controller
         $dataMesin = [];
 
         foreach ($divisi as $d) {
-            $totalAlat   = DB::table("dau_$d")->count();
-            $doneAlat    = DB::table("dau_$d")->where('status', 'DONE')->count();
-            $recalAlat   = DB::table("dau_$d")->where('status', 'RE CAL')->count();
-            $rusakAlat   = DB::table("dau_$d")->where('status', 'RUSAK')->count();
+            $totalAlat = DB::table("dau_$d")->count();
+            $doneAlat = DB::table("dau_$d")->where('status', 'DONE')->count();
+            $recalAlat = DB::table("dau_$d")->where('status', 'RE CAL')->count();
+            $rusakAlat = DB::table("dau_$d")->where('status', 'RUSAK')->count();
 
-            $totalMesin  = DB::table("dml_$d")->count();
-            $doneMesin   = DB::table("dml_$d")->where('status', 'DONE')->count();
-            $recalMesin  = DB::table("dml_$d")->where('status', 'RE CAL')->count();
-            $rusakMesin  = DB::table("dml_$d")->where('status', 'RUSAK')->count();
+            $totalMesin = DB::table("dml_$d")->count();
+            $doneMesin = DB::table("dml_$d")->where('status', 'DONE')->count();
+            $recalMesin = DB::table("dml_$d")->where('status', 'RE CAL')->count();
+            $rusakMesin = DB::table("dml_$d")->where('status', 'RUSAK')->count();
 
             $label = $this->labelMap[$d] ?? ucfirst($d);
 
             $dataAlat[] = [
                 'divisi' => $label,
-                'total'  => $totalAlat,
-                'done'   => $doneAlat,
-                'recal'  => $recalAlat,
-                'rusak'  => $rusakAlat,
+                'total' => $totalAlat,
+                'done' => $doneAlat,
+                'recal' => $recalAlat,
+                'rusak' => $rusakAlat,
             ];
 
             $dataMesin[] = [
                 'divisi' => $label,
-                'total'  => $totalMesin,
-                'done'   => $doneMesin,
-                'recal'  => $recalMesin,
-                'rusak'  => $rusakMesin,
+                'total' => $totalMesin,
+                'done' => $doneMesin,
+                'recal' => $recalMesin,
+                'rusak' => $rusakMesin,
             ];
         }
 
         return response()->json([
-            'alat'  => $dataAlat,
+            'alat' => $dataAlat,
             'mesin' => $dataMesin,
         ]);
     }

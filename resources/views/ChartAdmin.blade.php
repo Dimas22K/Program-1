@@ -120,7 +120,8 @@
 
         <main class="flex-1 p-6 lg:p-8 w-full max-w-7xl mx-auto mt-20">
             <h1 class="text-3xl font-bold text-slate-800">Calibration Summary Dashboard </h1>
-            <p class="text-slate-500 mt-1">Current status of measuring instruments and welding machines in all divisions.</p>
+            <p class="text-slate-500 mt-1">Current status of measuring instruments and welding machines in all
+                divisions.</p>
 
             <!-- KPI Section -->
             <div class="flex justify-center gap-6 mt-6">
@@ -228,61 +229,61 @@
                     document.getElementById('chartContainerMesinLas').style.minWidth = `${chartMinWidth}px`;
 
                     const chartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-        y: {
-            beginAtZero: true,
-            grid: { color: '#e2e8f0' },
-            ticks: { color: '#64748b' },
-            title: {
-                display: true,
-                text: 'Total Item',
-                font: { size: 14, weight: 'bold' },
-                padding: { bottom: 10 }
-            }
-        },
-        x: {
-            stacked: false,
-            grid: { display: false },
-            ticks: {
-                color: '#64748b',
-                autoSkip: false,
-                font: { size: 13 },
-            }
-        }
-    },
-    plugins: {
-        legend: {
-            position: 'top',
-            labels: {
-                color: '#334155',
-                usePointStyle: true,
-                boxWidth: 8
-            }
-        },
-        tooltip: {
-            callbacks: {
-                label: function (context) {
-                    const datasetLabel = context.dataset.label || '';
-                    const value = context.raw;
-                    const index = context.dataIndex;
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: { color: '#e2e8f0' },
+                                ticks: { color: '#64748b' },
+                                title: {
+                                    display: true,
+                                    text: 'Total Item',
+                                    font: { size: 14, weight: 'bold' },
+                                    padding: { bottom: 10 }
+                                }
+                            },
+                            x: {
+                                stacked: false,
+                                grid: { display: false },
+                                ticks: {
+                                    color: '#64748b',
+                                    autoSkip: false,
+                                    font: { size: 13 },
+                                    maxRotation: 0,  // ⬅️ tambah ini
+                                    minRotation: 0   // ⬅️ tambah ini
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    color: '#334155',
+                                    usePointStyle: true,
+                                    boxWidth: 8
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        const datasetLabel = context.dataset.label || '';
+                                        const value = context.raw;
+                                        const index = context.dataIndex;
+                                        const total = context.chart.data.datasets[0].data[index];
+                                        let percent = '';
+                                        if (datasetLabel === 'DONE' || datasetLabel === 'RE CAL') {
+                                            percent = ` (${((value / total) * 100).toFixed(1)}%)`;
+                                        }
+                                        return `${datasetLabel}: ${value} Unit${percent}`;
+                                    }
+                                }
+                            }
+                        },
+                        categoryPercentage: 0.8,
+                        barPercentage: 0.8
+                    };
 
-                    // total per divisi = ambil dataset[0] (total)
-                    const total = context.chart.data.datasets[0].data[index];
-                    let percent = '';
-                    if (datasetLabel === 'DONE' || datasetLabel === 'RE CAL') {
-                        percent = ` (${((value / total) * 100).toFixed(1)}%)`;
-                    }
-
-                    return `${datasetLabel}: ${value} Unit${percent}`;
-                }
-            }
-        }
-    },
-    categoryPercentage: 0.8,
-    barPercentage: 0.8
-};
 
 
                     // Chart Alat Ukur (Grouped Bar)

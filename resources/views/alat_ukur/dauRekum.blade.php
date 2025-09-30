@@ -49,6 +49,18 @@
             </form>
         </div>
 
+        <div class="mb-6 flex justify-between items-center">
+            <a href="{{ route('user.export', [$jenis, $divisi] + request()->query()) }}"
+                class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                    stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                </svg>
+                <span>Download Excel</span>
+            </a>
+        </div>
+
         <div class="bg-white shadow-xl rounded-lg overflow-hidden">
             <table class="w-full table-fixed">
                 <thead class="bg-slate-800 text-white">
