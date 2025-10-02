@@ -8,7 +8,7 @@
 </head>
 <body class="bg-slate-100 font-sans">
 
-    <div class="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-8">
+    <<div class="w-full max-w-[90%] mx-auto py-8">
         <a href="{{ url('/admin') }}" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors mb-6 group">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
@@ -38,6 +38,7 @@
                         <option value="">All</option>
                         <option value="DONE" {{ request('status') == 'DONE' ? 'selected' : '' }}>DONE</option>
                         <option value="RE CAL" {{ request('status') == 'RE CAL' ? 'selected' : '' }}>RE CAL</option>
+                        <option value="BROKEN" {{ request('status') == 'BROKEN' ? 'selected' : '' }}>BROKEN</option>
                     </select>
                 </div>
 
@@ -98,18 +99,21 @@
                         $rowClass = match ($statusKey) {
                             'DONE' => 'bg-green-50 hover:bg-green-100',
                             'RE CAL' => 'bg-yellow-50 hover:bg-yellow-100',
+                            'BROKEN' => 'bg-red-50 hover:bg-red-100',
                             default => 'hover:bg-gray-50'
                         };
 
                         $statusClass = match ($statusKey) {
                             'DONE' => 'bg-green-200 text-green-800',
                             'RE CAL' => 'bg-yellow-300 text-yellow-900',
+                            'BROKEN' => 'bg-red-300 text-red-900',
                             default => 'bg-gray-200 text-gray-800'
                         };
 
                         $statusLabelMap = [
                             'DONE' => 'DONE',
                             'RE CAL' => 'RE CAL',
+                            'BROKEN' => 'BROKEN',
                         ];
                         $displayLabel = $statusLabelMap[$statusKey] ?? $row->status;
                     @endphp

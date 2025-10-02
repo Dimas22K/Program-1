@@ -81,13 +81,19 @@
                 </div>
 
                 <div>
-                    <label for="description" class="block text-sm font-medium text-slate-700">Description</label>
-                    <textarea id="description" name="description" rows="3"
-                              class="w-full mt-2 bg-white/70 border-2 border-cyan-200 rounded-lg py-2 px-3 
-                                     placeholder-slate-400 focus:outline-none focus:border-orange-500 
-                                     focus:ring-1 focus:ring-orange-500 transition duration-300 hover:border-teal-400"
-                              placeholder="Tulis deskripsi alat ukur...">{{ $row->description }}</textarea>
-                </div>
+    <label for="description" class="block text-sm font-medium text-slate-700">Description</label>
+    <select id="description" name="description"
+            class="w-full mt-2 bg-white/70 border-2 border-cyan-200 rounded-lg py-2 px-3 
+                   placeholder-slate-400 focus:outline-none focus:border-orange-500 
+                   focus:ring-1 focus:ring-orange-500 transition duration-300 hover:border-teal-400" required>
+        <option value="" disabled selected>Pilih status...</option>
+        <option value="-" {{ $row->description == '-' ? 'selected' : '' }}>-</option>
+        <option value="TOOL NOT SEND" {{ $row->description == 'TOOL NOT SEND' ? 'selected' : '' }}>TOOL NOT SEND</option>
+        <option value="BROKEN" {{ $row->description == 'BROKEN' ? 'selected' : '' }}>BROKEN</option>
+        <option value="STILL IN USE" {{ $row->description == 'STILL IN USE' ? 'selected' : '' }}>STILL IN USE</option>
+    </select>
+</div>
+
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>

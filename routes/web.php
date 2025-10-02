@@ -70,7 +70,7 @@ Route::prefix('admin')->group(function () {
 Route::get('/kemampuanLab', [KemampuanLabController::class, 'index'])->name('kemampuanLab');
 Route::get('/kemampuanLabAdmin', [KemampuanLabController::class, 'indexAdmin'])->name('kemampuanLabAdmin');
 
-//interval kalibtrasi
+//interval kalibrasi
 Route::get('/interval', [IntervalController::class, 'index'])->name('interval.index');
 Route::get('/interval/create', [IntervalController::class, 'create'])->name('interval.create');
 Route::post('/interval/store', [IntervalController::class, 'store'])->name('interval.store');
@@ -79,6 +79,5 @@ Route::put('/interval/{id}', [IntervalController::class, 'update'])->name('inter
 Route::get('/interval/{id}/delete', [IntervalController::class, 'destroy'])->name('interval.delete');
 
 Route::get('/admin/{jenis}/{divisi}/export', [AdminController::class, 'export'])->name('admin.export');
-Route::get('/admin/{jenis}/{divisi}', [AdminController::class, 'index'])->name('admin.index');
 Route::get('/user/{jenis}/{divisi}/export', [AdminController::class, 'export'])->name('user.export');
 Route::get('/user/{jenis}/{divisi}', [AdminController::class, 'index'])->name('user.index');
