@@ -6,7 +6,7 @@
 </head>
 <body class="bg-gray-100 font-sans">
     
-{{-- HEADER ANDA - TIDAK ADA PERUBAHAN --}}
+
 <header class="fixed top-0 left-0 w-full z-50 bg-[#2ba7cf] text-white py-4 shadow-md">
     <div class="max-w-7xl mx-auto px-4 md:px-3 flex items-center justify-between">
         <div class="flex items-center space-x-2">
@@ -22,9 +22,8 @@
                 </button>
                 <div id="mobile-menu" class="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-[#0085FF] rounded-lg shadow-lg overflow-hidden transform scale-y-0 origin-top transition-transform duration-200 z-50" style="transform-origin: top center;">
                     <a href="{{ route('chart.user') }}" class="block px-5 py-2 hover:bg-[#0063c0] text-center">Dashboard</a>
-                    <a href="{{ route('admin') }}" class="block px-5 py-2 hover:bg-[#0063c0] text-center">Detail</a>
+                    <a href="{{ route('welcome') }}" class="block px-5 py-2 hover:bg-[#0063c0] text-center">Detail</a>
                     <a href="{{ route('kemampuanLab') }}" class="block px-5 py-2 hover:bg-[#0063c0] text-center">Calibration Laboratory Capability</a>
-                    <a href="{{ route('interval.index') }}"class="block px-5 py-2 hover:bg-[#0063c0] text-center">Calibration Interval</a>
                     <a href="{{ route('logout') }}" class="block px-5 py-2 hover:bg-[#0063c0] text-center">Logout</a>
                 </div>
             </div>
@@ -46,7 +45,7 @@
 
     {{-- KONTEN HALAMAN ANDA - TIDAK ADA PERUBAHAN --}}
     <div class="container mx-auto p-4 sm:p-6 lg:p-8 mt-16">
-        <a href="{{ url('/admin') }}" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors mb-4 group">
+        <a href="{{ url('/welcome') }}" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors mb-4 group">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
             </svg>

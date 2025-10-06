@@ -16,7 +16,6 @@
 </head>
 
 <body class="bg-slate-100 flex flex-col min-h-screen">
-  </head>
 
   <body class="bg-white">
     <header class="fixed top-0 left-0 w-full z-50 bg-[#2ba7cf] text-white py-4 shadow-md">
