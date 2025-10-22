@@ -12,11 +12,11 @@ class AuthController extends Controller
     // Tampilkan halaman login
     public function showLogin()
     {
-        return view('login'); // pastikan file ada di resources/views/auth/login.blade.php
+        return view('index');
     }
 
     // Proses login
-    public function login(Request $request)
+    public function index(Request $request)
     {
         $request->validate([
             'username' => 'required',
@@ -50,7 +50,7 @@ class AuthController extends Controller
     public function adminDashboard(Request $request)
     {
         if (!Session::has('user_id') || Session::get('role') !== 'admin') {
-            return redirect('/login')->with('error', 'Silakan login kembali!');
+            return redirect('/index')->with('error', 'Silakan login kembali!');
         }
 
         // Set header no-cache agar tidak bisa kembali setelah logout
@@ -63,7 +63,7 @@ class AuthController extends Controller
     public function userDashboard(Request $request)
     {
         if (!Session::has('user_id') || Session::get('role') !== 'user') {
-            return redirect('/login')->with('error', 'Silakan login kembali!');
+            return redirect('/index')->with('error', 'Silakan login kembali!');
         }
 
         $this->noCache($request);
@@ -75,7 +75,7 @@ class AuthController extends Controller
     public function chartUser(Request $request)
     {
         if (!Session::has('user_id') || Session::get('role') !== 'user') {
-            return redirect('/login')->with('error', 'Silakan login kembali!');
+            return redirect('/index')->with('error', 'Silakan login kembali!');
         }
 
         $this->noCache($request);
@@ -87,7 +87,7 @@ class AuthController extends Controller
     public function chartAdmin(Request $request)
     {
         if (!Session::has('user_id') || Session::get('role') !== 'admin') {
-            return redirect('/login')->with('error', 'Silakan login kembali!');
+            return redirect('/index')->with('error', 'Silakan login kembali!');
         }
 
         $this->noCache($request);
@@ -99,7 +99,7 @@ class AuthController extends Controller
     public function logout()
     {
         Session::flush(); 
-        return redirect('/login')->with('success', 'Berhasil logout');
+        return redirect('/index')->with('success', 'Berhasil logout');
     }
 
     // Fungsi untuk set no-cache

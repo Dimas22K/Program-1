@@ -8,12 +8,12 @@ use App\Http\Controllers\KemampuanLabController;
 use App\Http\Controllers\IntervalController;
 
 Route::get('/', function () {
-    return view('login');
+    return view('index');
 });
 
 // Login
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+Route::get('/index', [AuthController::class, 'showindex'])->name('index');
+Route::post('/index', [AuthController::class, 'index']);
 
 // Chart User
 Route::get('/chart-user', [AuthController::class, 'chartUser'])->name('chart.user');

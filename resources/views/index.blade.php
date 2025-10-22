@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - PT PAL</title>
+    <link rel="icon" type="image/png" href="/images/kalibrasi.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
@@ -66,7 +67,7 @@
                 Masuk
             </h1>
 
-            <form action="{{ url('/login') }}" method="POST" class="w-full max-w-xs">
+            <form action="{{ url('/index') }}" method="POST" class="w-full max-w-xs">
                 @csrf
 
                 <input
