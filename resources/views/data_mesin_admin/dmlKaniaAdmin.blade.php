@@ -38,7 +38,7 @@
                     <select name="status" id="status" class="mt-1 border-gray-300 rounded-md shadow-sm w-40">
                         <option value="">All</option>
                         <option value="DONE" {{ request('status') == 'DONE' ? 'selected' : '' }}>DONE</option>
-                        <option value="RE CAL" {{ request('status') == 'RE CAL' ? 'selected' : '' }}>RE CAL</option>
+                        <option value="RE CALL" {{ request('status') == 'RE CALL' ? 'selected' : '' }}>RE CALL</option>
                         <option value="BROKEN" {{ request('status') == 'BROKEN' ? 'selected' : '' }}>BROKEN</option>
                     </select>
                 </div>
