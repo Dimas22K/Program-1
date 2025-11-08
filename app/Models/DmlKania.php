@@ -9,9 +9,8 @@ class DmlKania extends Model
 {
     use HasFactory;
 
-    protected $table = 'dml_kania'; // nama tabel di database
-    protected $primaryKey = 'id';   // kolom primary key (default id)
+    protected $table = 'dml_kania'; 
+    protected $primaryKey = 'id';   
 
-    // kalau tidak pakai created_at & updated_at
     public $timestamps = false;
 }

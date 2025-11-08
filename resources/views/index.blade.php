@@ -10,7 +10,6 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
-        /* Keyframes untuk animasi elemen masuk */
         @keyframes slideInUp {
             from {
                 opacity: 0;
@@ -22,25 +21,22 @@
             }
         }
 
-        /* Keyframes untuk animasi kartu utama */
         @keyframes fadeIn {
             from { opacity: 0; transform: scale(0.98); }
             to { opacity: 1; transform: scale(1); }
         }
         
-        /* Keyframes untuk zoom lambat pada gambar latar kanan */
         @keyframes slowZoom {
             0% { background-size: 100% 100%; }
             100% { background-size: 110% 110%; }
         }
 
-        /* Kelas utilitas untuk menerapkan animasi */
         .animate-fade-in {
             animation: fadeIn 0.6s ease-out forwards;
         }
 
         .animate-slide-in-up {
-            /* Atur kondisi awal sebelum animasi berjalan */
+
             opacity: 0;
             animation: slideInUp 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
@@ -48,7 +44,6 @@
         .animate-slow-zoom {
             background-repeat: no-repeat;
             background-position: center;
-            /* Animasi berjalan selama 40 detik, bolak-balik, dan mulus */
             animation: slowZoom 40s infinite alternate ease-in-out;
         }
     </style>
@@ -61,7 +56,7 @@
         
         <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12 flex flex-col justify-center items-center">
             
-            <img src="/images/PAL.png" class="w-60 mb-16 animate-slide-in-up" style="animation-delay: 0.1s;" />
+            <img src="/images/pal.png" class="w-60 mb-16 animate-slide-in-up" style="animation-delay: 0.1s;" />
 
             <h1 class="text-2xl xl:text-3xl font-bold mb-10 animate-slide-in-up" style="animation-delay: 0.2s;">
                 Masuk

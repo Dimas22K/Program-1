@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>General Engineering Measuring Instruments Data - Admin</title>
+    <title>Submarine Measuring Instruments Data - Admin</title>
     <link rel="icon" type="image/png" href="/images/kalibrasi.png">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -17,7 +17,7 @@
             <span>Back</span>
         </a>
 
-        <h1 class="text-3xl font-bold mb-6 text-slate-800">General Engineering Measuring Instruments Data (Admin)</h1>
+        <h1 class="text-3xl font-bold mb-6 text-slate-800">Submarine Measuring Instruments Data (Admin)</h1>
 
         <div class="bg-white p-4 rounded-lg shadow-sm mb-6">
             <form method="GET" action="{{ url()->current() }}" class="flex flex-wrap items-end gap-4">
@@ -99,22 +99,25 @@
 
                         $rowClass = match ($statusKey) {
                             'DONE' => 'bg-green-50 hover:bg-green-100',
-                            'RE CAL' => 'bg-yellow-50 hover:bg-yellow-100',
+                            'RE CALL' => 'bg-yellow-50 hover:bg-yellow-100',
                             'BROKEN' => 'bg-red-50 hover:bg-red-100',
-                            default => 'hover:bg-gray-50'
+                            'OOT' => 'bg-gray-50 hover:bg-gray-300',
+                            default => 'bg-white'
                         };
 
                         $statusClass = match ($statusKey) {
                             'DONE' => 'bg-green-200 text-green-800',
-                            'RE CAL' => 'bg-yellow-300 text-yellow-900',
+                            'RE CALL' => 'bg-yellow-300 text-yellow-900',
                             'BROKEN' => 'bg-red-300 text-red-900',
-                            default => 'bg-gray-200 text-gray-800'
+                            'OOT' => 'bg-gray-200 text-gray-800',
+                            default => 'bg-white'
                         };
 
                         $statusLabelMap = [
                             'DONE' => 'DONE',
-                            'RE CAL' => 'RE CAL',
+                            'RE CALL' => 'RE CALL',
                             'BROKEN' => 'BROKEN',
+                            'OOT' => 'OOT',
                         ];
                         $displayLabel = $statusLabelMap[$statusKey] ?? $row->status;
                     @endphp
@@ -126,15 +129,15 @@
                         <td class="px-2 py-4 border-b border-gray-200">{{ $row->merk_type }}</td>
                         <td class="px-2 py-4 border-b border-gray-200">{{ $row->no_seri }}</td>
                         <td class="px-2 py-4 border-b border-gray-200">{{ $row->range_alat }}</td>
-                        <td class="px-2 py-4 border-b border-gray-200">{{ $row->tgl_kalibrasi }}</td>
-                        <td class="px-2 py-4 border-b border-gray-200">{{ $row->kalibrasi_selanjutnya }}</td>
+                        <td class="px-2 py-4 border-b border-gray-200">{{ $row->tgl_kalibrasi ? \Carbon\Carbon::parse($row->tgl_kalibrasi)->format('d-m-Y') : '-' }}</td>
+                        <td class="px-2 py-4 border-b border-gray-200">{{ $row->kalibrasi_selanjutnya ? \Carbon\Carbon::parse($row->kalibrasi_selanjutnya)->format('d-m-Y') : '-' }}</td>
                         <td class="px-3 py-4 border-b border-gray-200">
                             @if(!empty($row->kalibrasi_selanjutnya))
                             @php
                                     $nextCal = \Carbon\Carbon::parse($row->kalibrasi_selanjutnya);
                                     $planDate = $nextCal->copy()->subDays(7);
                                 @endphp
-                                <span class="text-blue-600 font-semibold">{{ $planDate->format('Y-m-d') }}</span>
+                                <span class="text-blue-600 font-semibold">{{ $planDate->format('d-m-Y') }}</span>
                             @else
                             <span class="text-gray-400">-</span>
                             @endif

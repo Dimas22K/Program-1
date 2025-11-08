@@ -17,7 +17,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                     </svg>
-                    Kembali
+                    Back
                 </a>
             </div>
 
@@ -29,7 +29,6 @@
                 @csrf
                 @method('PUT')
 
-                <!-- Hidden agar status tetap terkirim -->
                 <input type="hidden" name="status" value="{{ $row->status }}">
 
                 <div>
@@ -44,10 +43,10 @@
                 <div>
                     <label for="nama_alat" class="block text-sm font-medium text-slate-700">Welding Machine Name</label>
                     <input type="text" id="nama_alat" name="nama_alat" 
-                           value="{{ $row->nama_alat }}"
-                           class="w-full mt-2 bg-white/70 border-2 border-cyan-200 rounded-lg py-2 px-3 
-                                  placeholder-slate-400 focus:outline-none focus:border-orange-500 
-                                  focus:ring-1 focus:ring-orange-500 transition duration-300 hover:border-teal-400" required>
+                            value="{{ $row->nama_alat }}"
+                            readonly
+                            class="w-full mt-2 bg-gray-100 text-gray-700 border-2 border-cyan-200 rounded-lg py-2 px-3 
+                                    cursor-not-allowed placeholder-slate-400 focus:outline-none" required>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

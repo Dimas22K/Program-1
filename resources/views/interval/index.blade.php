@@ -25,14 +25,10 @@
           <img src="/images/danantara.jpg" alt="Danantara Logo" class="h-10 md:h-12 w-auto mr-4">
         </div>
 
-        <!-- Bagian kanan: PAL + tombol menu -->
         <div class="flex items-center space-x-6">
-          <!-- Logo PAL -->
           <img src="/images/pal.png" alt="PAL Logo" class="h-10 md:h-12 w-auto">
 
-          <!-- Wrapper tombol menu (HANYA ini yang relative) -->
           <div class="relative inline-block ml-8">
-            <!-- Tombol Menu -->
             <button id="mobile-menu-button" class="focus:outline-none">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor" stroke-width="2">
@@ -40,8 +36,6 @@
               </svg>
             </button>
 
-
-            <!-- Dropdown: centered under the button -->
             <div id="mobile-menu"
               class="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-[#0085FF] rounded-lg shadow-lg overflow-hidden transform scale-y-0 origin-top transition-transform duration-200 z-50"
               style="transform-origin: top center;">
@@ -62,16 +56,13 @@
         const menu = document.getElementById('mobile-menu');
         const wrapper = document.getElementById('menu-wrapper');
 
-        // Toggle: stop propagation supaya click tidak "bubbling" ke document
         button.addEventListener('click', function (e) {
           e.stopPropagation();
           const open = menu.classList.toggle('scale-y-100');
           menu.classList.toggle('scale-y-0', !open);
-          // accessible state
           button.setAttribute('aria-expanded', open ? 'true' : 'false');
         });
 
-        // Klik di luar area -> tutup menu
         document.addEventListener('click', function (e) {
           if (!wrapper.contains(e.target)) {
             menu.classList.add('scale-y-0');
@@ -80,7 +71,6 @@
           }
         });
 
-        // optional: tekan Esc untuk tutup
         document.addEventListener('keydown', function (e) {
           if (e.key === 'Escape') {
             menu.classList.add('scale-y-0');
@@ -133,7 +123,7 @@
         <img src="/images/kan.png" class="h-12 sm:h-16 object-contain" alt="KAN">
       </div>
       <div>
-        Laboratorium Kalibrasi PT. PAL Indonesia (Persero). Copyright 2021.
+        Laboratorium Kalibrasi PT. PAL Indonesia. Copyright 2021.
       </div>
     </div>
   </footer>

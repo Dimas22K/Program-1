@@ -12,7 +12,7 @@ Route::get('/', function () {
 });
 
 // Login
-Route::get('/index', [AuthController::class, 'showindex'])->name('index');
+Route::get('/index', [AuthController::class, 'showLogin'])->name('index');
 Route::post('/index', [AuthController::class, 'index']);
 
 // Chart User

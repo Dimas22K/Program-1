@@ -7,20 +7,17 @@ use App\Models\IntervalKalibrasi; // pakai model yang benar
 
 class IntervalController extends Controller
 {
-    // tampilkan semua data
     public function index()
     {
         $intervals = IntervalKalibrasi::all();
         return view('interval.index', compact('intervals'));
     }
 
-    // form tambah data
     public function create()
     {
         return view('interval.create');
     }
 
-    // simpan data baru
     public function store(Request $request)
     {
         IntervalKalibrasi::create([
@@ -31,14 +28,12 @@ class IntervalController extends Controller
         return redirect()->route('interval.index')->with('success', 'Data berhasil ditambahkan');
     }
 
-    // form edit data
     public function edit($id)
     {
         $interval = IntervalKalibrasi::findOrFail($id);
         return view('interval.edit', compact('interval'));
     }
 
-    // update data
     public function update(Request $request, $id)
 {
     $request->validate([
@@ -55,7 +50,6 @@ class IntervalController extends Controller
 }
 
 
-    // hapus data
     public function destroy($id)
     {
         $interval = IntervalKalibrasi::findOrFail($id);

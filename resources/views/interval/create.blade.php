@@ -20,19 +20,14 @@
 
   <header class="fixed top-0 left-0 w-full z-50 bg-[#2ba7cf] text-white py-4 shadow-md">
       <div class="max-w-7xl mx-auto px-4 md:px-3 flex items-center justify-between">
-        <!-- Logo Kiri -->
         <div class="flex items-center space-x-2">
           <img src="/images/danantara.jpg" alt="Danantara Logo" class="h-10 md:h-12 w-auto mr-4">
         </div>
 
-        <!-- Bagian kanan: PAL + tombol menu -->
         <div class="flex items-center space-x-6">
-          <!-- Logo PAL -->
           <img src="/images/pal.png" alt="PAL Logo" class="h-10 md:h-12 w-auto">
 
-          <!-- Wrapper tombol menu (HANYA ini yang relative) -->
           <div class="relative inline-block ml-8">
-            <!-- Tombol Menu -->
             <button id="mobile-menu-button" class="focus:outline-none">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor" stroke-width="2">
@@ -40,8 +35,6 @@
               </svg>
             </button>
 
-
-            <!-- Dropdown: centered under the button -->
             <div id="mobile-menu"
               class="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-[#0085FF] rounded-lg shadow-lg overflow-hidden transform scale-y-0 origin-top transition-transform duration-200 z-50"
               style="transform-origin: top center;">

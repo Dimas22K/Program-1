@@ -32,19 +32,17 @@
     </div>
 </header>
 
-{{-- SCRIPT ANDA - TIDAK ADA PERUBAHAN --}}
 <script>
     document.addEventListener('DOMContentLoaded', function () {
       const button = document.getElementById('mobile-menu-button');
       const menu = document.getElementById('mobile-menu');
-      const wrapper = document.querySelector('.relative.inline-block'); // Selector yang lebih aman
+      const wrapper = document.querySelector('.relative.inline-block');
       button.addEventListener('click', function (e) { e.stopPropagation(); const open = menu.classList.toggle('scale-y-100'); menu.classList.toggle('scale-y-0', !open); button.setAttribute('aria-expanded', open ? 'true' : 'false'); });
       document.addEventListener('click', function (e) { if (!wrapper.contains(e.target)) { menu.classList.add('scale-y-0'); menu.classList.remove('scale-y-100'); button.setAttribute('aria-expanded', 'false'); } });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { menu.classList.add('scale-y-0'); menu.classList.remove('scale-y-100'); button.setAttribute('aria-expanded', 'false'); } });
     });
 </script>
 
-    {{-- KONTEN HALAMAN ANDA - TIDAK ADA PERUBAHAN --}}
     <div class="container mx-auto p-4 sm:p-6 lg:p-8 mt-16">
         <a href="{{ url('/welcome') }}" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors mb-4 group">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
@@ -57,8 +55,7 @@
         <div class="bg-white shadow-lg rounded-xl overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="min-w-full">
-                    
-                    {{-- HEADER TABEL ANDA - TIDAK ADA PERUBAHAN --}}
+
                     <thead class="bg-indigo-700"> 
                         <tr>
                             <th class="px-6 py-3 text-center text-xs font-semibold text-white uppercase tracking-wider w-16">No</th>
@@ -70,8 +67,6 @@
 
                     <tbody class="divide-y divide-gray-200">
                         @foreach($data as $row)
-                            {{-- ========================================================== --}}
-                            {{-- ▼▼▼ PERUBAHAN HANYA DILAKUKAN DI DALAM BLOK INI ▼▼▼ --}}
                             @php
                                 // Logika untuk menentukan kelas CSS berdasarkan nama grup
                                 $rowClass = '';
@@ -119,18 +114,24 @@
                                     @endforeach
                                 </td>
                             </tr>
-                             {{-- ▲▲▲ PERUBAHAN HANYA DILAKUKAN DI DALAM BLOK INI ▲▲▲ --}}
-                             {{-- ========================================================== --}}
+
                         @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
 
-        {{-- PAGINATION ANDA - TIDAK ADA PERUBAHAN --}}
         <div class="mt-6">
             {{ $data->links() }}
         </div>
     </div>
+
+    <footer class="bg-[#2ba7cf] text-white py-6 mt-12">
+        <div class="container mx-auto px-6 text-center text-sm">
+            <div class="inline-flex items-center justify-center gap-x-16 mb-4">
+                <img src="/images/kan.png" class="h-8 md:h-12 lg:h-20 object-contain" alt="KAN">
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

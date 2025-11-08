@@ -9,13 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // Tampilkan halaman login
     public function showLogin()
     {
         return view('index');
     }
 
-    // Proses login
     public function index(Request $request)
     {
         $request->validate([
@@ -23,10 +21,8 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // Cari user berdasarkan username
         $user = User::where('username', $request->username)->first();
 
-        // Cek password pakai hash
         if ($user && Hash::check($request->password, $user->password)) {
             // Simpan ke session
             Session::put('user_id', $user->id);
@@ -46,7 +42,6 @@ class AuthController extends Controller
         ])->withInput();
     }
 
-    // Dashboard Admin
     public function adminDashboard(Request $request)
     {
         if (!Session::has('user_id') || Session::get('role') !== 'admin') {
@@ -59,7 +54,6 @@ class AuthController extends Controller
         return view('admin');
     }
 
-    // Dashboard User
     public function userDashboard(Request $request)
     {
         if (!Session::has('user_id') || Session::get('role') !== 'user') {
@@ -71,7 +65,6 @@ class AuthController extends Controller
         return view('welcome');
     }
 
-    // 🔹 Chart untuk User
     public function chartUser(Request $request)
     {
         if (!Session::has('user_id') || Session::get('role') !== 'user') {
@@ -83,7 +76,6 @@ class AuthController extends Controller
         return view('chartuser');
     }
 
-    // 🔹 Chart untuk Admin
     public function chartAdmin(Request $request)
     {
         if (!Session::has('user_id') || Session::get('role') !== 'admin') {
@@ -95,7 +87,6 @@ class AuthController extends Controller
         return view('chartadmin');
     }
 
-    // Logout
     public function logout()
     {
         Session::flush(); 
