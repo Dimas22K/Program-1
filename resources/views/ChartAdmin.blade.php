@@ -128,7 +128,7 @@
             </div>
 
             <div class="bg-white p-6 rounded-xl shadow">
-                <h2 class="text-xl font-semibold text-slate-800">Measuring Instrument: Total - RECALL</h2>
+                <h2 class="text-xl font-semibold text-slate-800">Measuring Instrument: Total - RE CALL</h2>
                 <div class="relative h-96 overflow-x-auto mt-4 custom-scrollbar">
                     <div id="chartContainerAlatUkurRecal" class="h-full">
                         <canvas id="chartAlatUkurVsRecal"></canvas>
@@ -146,7 +146,7 @@
             </div>
 
             <div class="bg-white p-6 rounded-xl shadow">
-                <h2 class="text-xl font-semibold text-slate-800">Welding Machine: Total - RECALL</h2>
+                <h2 class="text-xl font-semibold text-slate-800">Welding Machine: Total - RE CALL</h2>
                 <div class="relative h-96 overflow-x-auto mt-4 custom-scrollbar">
                     <div id="chartContainerMesinLasRecal" class="h-full">
                         <canvas id="chartMesinLasVsRecal"></canvas>
@@ -241,7 +241,7 @@
                                 const index = context.dataIndex;
                                 const total = context.chart.data.datasets[0].data[index];
                                 let percent = '';
-                                if (datasetLabel === 'DONE' || datasetLabel === 'RE CAL') {
+                                if (datasetLabel === 'DONE' || datasetLabel === 'RE CALL') {
                                     percent = ` (${((value / total) * 100).toFixed(1)}%)`;
                                 }
                                 return `${datasetLabel}: ${value} Unit${percent}`;
@@ -306,7 +306,7 @@
                             backgroundColor: '#4f46e5'
                         },
                         {
-                            label: 'RECALL',
+                            label: 'RE CALL',
                             data: data.alat.map(d => d.recal),
                             backgroundColor: '#f59e0b'
                         }
@@ -346,7 +346,7 @@
                             backgroundColor: '#06b6d4'
                         },
                         {
-                            label: 'RECALL',
+                            label: 'RE CALL',
                             data: data.mesin.map(d => d.recal),
                             backgroundColor: '#f59e0b'
                         }

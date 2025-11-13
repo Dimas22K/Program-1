@@ -91,6 +91,7 @@
                         <option value="TOOL NOT SEND" {{ $row->description == 'TOOL NOT SEND' ? 'selected' : '' }}>TOOL NOT SEND</option>
                         <option value="BROKEN" {{ $row->description == 'BROKEN' ? 'selected' : '' }}>BROKEN</option>
                         <option value="STILL IN USE" {{ $row->description == 'STILL IN USE' ? 'selected' : '' }}>STILL IN USE</option>
+                        <option value="IN CAL PROCESS" {{ $row->description == 'IN CAL PROCESS' ? 'selected' : '' }}>IN CAL PROCESS</option>
                     </select>
                 </div>
 

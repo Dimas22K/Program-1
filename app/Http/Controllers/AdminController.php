@@ -240,12 +240,12 @@ class AdminController extends Controller
         foreach ($divisi as $d) {
             $totalAlat = DB::table("dau_$d")->count();
             $doneAlat = DB::table("dau_$d")->where('status', 'DONE')->count();
-            $recalAlat = DB::table("dau_$d")->where('status', 'RE CAL')->count();
+            $recalAlat = DB::table("dau_$d")->where('status', 'RE CALL')->count();
             $rusakAlat = DB::table("dau_$d")->where('status', 'RUSAK')->count();
 
             $totalMesin = DB::table("dml_$d")->count();
             $doneMesin = DB::table("dml_$d")->where('status', 'DONE')->count();
-            $recalMesin = DB::table("dml_$d")->where('status', 'RE CAL')->count();
+            $recalMesin = DB::table("dml_$d")->where('status', 'RE CALL')->count();
             $rusakMesin = DB::table("dml_$d")->where('status', 'RUSAK')->count();
 
             $label = $this->labelMap[$d] ?? ucfirst($d);

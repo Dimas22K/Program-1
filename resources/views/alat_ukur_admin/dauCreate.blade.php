@@ -107,6 +107,7 @@
                         <option value="TOOL NOT SEND">TOOL NOT SEND</option>
                         <option value="BROKEN">BROKEN</option>
                         <option value="STILL IN USE">STILL IN USE</option>
+                        <option value="IN CAL PROCESS">IN CAL PROCESS</option>
                     </select>
                 </div>
 

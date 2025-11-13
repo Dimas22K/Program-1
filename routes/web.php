@@ -29,10 +29,6 @@ Route::get('/chart-data', [AdminController::class, 'getChartData'])->name('chart
 // Logout
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Admin dashboard
-/*Route::get('/admin', function () {
-    return view('admin');
-})->name('admin');*/
 Route::get('/admin', [AuthController::class, 'adminDashboard'])->name('admin');
 
 Route::get('/welcome', function () {
